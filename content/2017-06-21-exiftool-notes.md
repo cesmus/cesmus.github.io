@@ -17,14 +17,13 @@ More Internet resources about ExifTool: [Wikipedia](https://en.wikipedia.org/wik
 
 ### Tags & Groups
 
-Meta information is stored in tags and groups which accomodate multiple tags. Here a list of some of the most common groups.
+Meta information is stored in tags and they are associated in groups. Here a list of some of the most common groups.
 
 * File: system information
 * EXIF: (Exchangeable image file format) [JEITA](http://www.jeita.or.jp/english/) standard
 * MakerNotes: metadata from maker
 * IPTC IIM: (IPTC Information Interchange Model) [International Press Telecommunications Council](https://iptc.org/)
 * XMP: Adobe's XMP standard [Adobe's XMP](https://www.adobe.com/products/xmp.html)
-
 
 ### Examples
 

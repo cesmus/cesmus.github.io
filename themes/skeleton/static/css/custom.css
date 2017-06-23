@@ -70,8 +70,10 @@
 }
 .post-category {
     border: 2px solid #361;
+    border-radius: 2px;
+    color: #361;
     margin-left: 8px;
-    padding-left: 12px;
+    padding: 2px 8px;
     display: inline-block;
     white-space: nowrap;
 }
@@ -167,6 +169,10 @@ pre {
 }
 img {
     max-width: 100%;
+}
+
+code {
+  color: #c01919;
 }
 
 a:hover {
