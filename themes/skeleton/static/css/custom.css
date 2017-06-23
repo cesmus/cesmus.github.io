@@ -47,6 +47,18 @@
     font-size: 1.5rem;
     letter-spacing: 0.2rem;
 }
+.content-subhead h5 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.8em;
+    border-bottom: 2px solid #1c1f24;
+}
+.content-subhead h3 {
+    font-weight: 400;
+    font-size: 1.2em;
+    text-align: center;
+}
 .post-content {
     color: #3a4145;
     font-family: 'Overpass',serif;
