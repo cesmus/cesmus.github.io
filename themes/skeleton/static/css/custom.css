@@ -160,18 +160,22 @@ a {
 .footer {
     color: #1c1f24;
     font-family: 'Bitter',sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     line-height: 1.75em;
     padding-top: 2rem;
     padding-bottom: 2rem;
     display: block;
-    float: right;
-    text-align: right;
+    /*float: right;*/
+    text-align: center;
+}
+footer {
+    /*background-color: #135;*/
+    background-color: #fff;
 }
 pre {
-    /*background: none repeat scroll 0 0 #f7fafb;*/
     background: none repeat scroll 0 0 #2d2d2d;
-    border: 1px solid #e3edf3;
+    /*border: 1px solid #e3edf3;*/
+    border-left: 0.8rem solid #ed550f;
     border-radius: 3px;
     box-sizing: border-box;
     font-family: 'Overpass Mono',monospace,sans-serif;
