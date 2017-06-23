@@ -19,7 +19,6 @@
             <header class="post-header">
                 <h3>{{ article.title }}</h3>
                 <p class="post-meta">
-                    {{ article.locale_date }} &middot; tags->
                     {% for tag in article.tags %}
                         <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
                     {% endfor %}

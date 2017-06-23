@@ -69,7 +69,7 @@
     margin: 1.75em 0 1.75em;
 }
 .post-category {
-    border-left: 1px solid #d5dbde;
+    border: 2px solid #361;
     margin-left: 8px;
     padding-left: 12px;
     display: inline-block;

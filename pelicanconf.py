@@ -57,7 +57,7 @@ PLUGINS = [
            #'neighbors',
            #'pdf',
            ]
-DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = False
 DIRECT_TEMPLATES = ('index', 'archives')
 ARCHIVES_SAVE_AS = 'archives/index.html'
