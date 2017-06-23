@@ -1,6 +1,6 @@
 ### 
 output
-pelicanconf_local.py
+content/notebooks
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
