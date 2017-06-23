@@ -5,7 +5,7 @@ branches:
   only:
   - sources
 install:
-- pip install -r requirements.txt
+- pip install markdown ghp-import pelican
 script:
 - make publish github
 env:
