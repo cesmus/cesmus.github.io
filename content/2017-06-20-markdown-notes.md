@@ -1,4 +1,4 @@
-title: markdown notes
+title: Markdown notes
 slug: markdown-notes
 date: 2017-06-19 23:58
 category: markdown

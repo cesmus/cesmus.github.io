@@ -20,7 +20,7 @@
                 <h3>{{ article.title }}</h3>
                 <p class="post-meta">
                     {% for tag in article.tags %}
-                        <a class="post-category" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+                        <a class="post-category button button-primary" href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
                     {% endfor %}
                 </p>
             </header>

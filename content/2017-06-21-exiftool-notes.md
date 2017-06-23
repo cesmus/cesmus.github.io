@@ -1,8 +1,8 @@
-title: exiftool notes
+title: ExifTool notes
 slug: exiftool-notes
 date: 2017-06-21 10:38
 category: exiftool
-tags: exiftool, web, media
+tags: exiftool, web, metadata
 
 > <http://owl.phy.queensu.ca/~phil/exiftool/>
 

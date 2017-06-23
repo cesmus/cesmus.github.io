@@ -1,10 +1,11 @@
 .navbar {
     border-top-width: 0;
     background: none repeat scroll 0 0 #fff;
-    border-bottom: 1px solid #361;
-    border-top: 1px solid #361;
+    border-bottom: 2px solid #361;
+    border-top: 2px solid #361;
+    border-right: 2px solid #361;
     display: block;
-    height: 6.5rem;
+    /*height: 6.5rem;*/
     width: 100%;
     z-index: 99;
 }
@@ -31,33 +32,47 @@
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.2rem;
-    line-height: 6.5rem;
-    margin-right: 25px;
+    /*line-height: 6.5rem;*/
+    margin: 5px 1px;
+    /*margin-right: 25px;*/
     text-decoration: none;
     text-transform: lowercase;
 }
-.navbar-link.active {
-    color: #33c3f0;
+.button {
+   border-radius: 8px;
+}
+.button.button-primary {
+   border-radius: 100px;
+   background-color: #361;
+   border-color: #361;
+   text-transform: lowercase;
+}
+.button.button-primary:hover, .button.button-primary:active {
+   background-color: #331;
+   border-color: #361;
+   text-transform: uppercase;
 }
 .container {
     max-width: 800px;
 }
 .content-subhead {
     color: #1c1f24;
+    /*text-align: center;*/
     font-size: 1.5rem;
     letter-spacing: 0.2rem;
 }
 .content-subhead h5 {
-    text-align: center;
+    display: inline-block;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 0.8em;
     border-bottom: 2px solid #1c1f24;
+    margin-bottom: 0px;
 }
 .content-subhead h3 {
-    font-weight: 400;
-    font-size: 1.2em;
-    text-align: center;
+    margin-top: 4px;
+    font-weight: 500;
+    font-size: 1.5em;
 }
 .post-content {
     color: #3a4145;
@@ -69,12 +84,12 @@
     margin: 1.75em 0 1.75em;
 }
 .post-category {
-    border: 2px solid #361;
-    border-radius: 2px;
-    color: #361;
+    /*border: 2px solid #361;*/
+    /*border-radius: 2px;*/
+    /*color: #361;*/
     margin-left: 8px;
-    padding: 2px 8px;
-    display: inline-block;
+    /*padding: 2px 8px;*/
+    /*display: inline-block;*/
     white-space: nowrap;
 }
 .header {
