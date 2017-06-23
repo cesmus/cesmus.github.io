@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Cesmus'
 SITENAME = 'Cesmus'
-SITEURL = ''
+SITEURL = 'https://cesmus.github.io'
 LOCATION = 'Colombia'
 
 PATH = 'content'
@@ -32,7 +32,7 @@ SOCIAL = ()
 DEFAULT_DATE = 'fs'
 WITH_FUTURE_DATES = True
 FILENAME_METADATA = '(?P<date>\d{4}-\d{2}-\d{2})-(?P<slug>.*)'
-STATIC_PATHS = ['images', 'widgets', 'extra']
+STATIC_PATHS = ['images', 'extra']
 PAGE_EXCLUDES = ['notebooks']
 ARTICLE_EXCLUDES = ['notebooks']
 EXTRA_PATH_METADATA = {
