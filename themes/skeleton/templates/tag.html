@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block title %}
+{{ super() }} tag&middot; {{ tag|striptags }}
+{% endblock title %}
+
+{% block pagetitle %}
+<div class="container">
+    <h5 class="content-subhead">Tagged with '{{ tag }}'</h5>
+</div>
+{% endblock pagetitle %}

@@ -1,0 +1,13 @@
+language: python
+python:
+- '3.6'
+branches:
+  only:
+  - sources
+install:
+- pip install -r requirements.txt
+script:
+- make publish github
+env:
+  global:
+    secure: GmayxW7mEJP0eSDU8L2luCdgs3qw+q7EOeY1XGkr3F+iTnvGBypkHODEbp5wXRKUpvo+XXTM8CuTCD8ZYnG6Si9ehPkrzz2ifSj5oQ7HPl4jSMcB0FRa/DO++GM3lo+ysBl9TEZ/yNQUwK4c18Afph9DGWIg3IQB67x9vtBaeS+SiG2uPAgzxdGB7kYCEJOu2ZJEmPETEMKoJa/YdKLvMI8cr4Pe+PNMaGynzwaPqIdEhczcIPFehRg6+jI/LAU6QfA5DtLGGgDys61vdiiqxgmd82Zkza6Hoeu+4nfziCqIAXgTk//kv1QGXyLpt8uHyV7n8fWggwjDTg1kP1YPkxwD0VNXfmt5InCfi7MOqL2qWV8g1lNAlWQsYytTelVuTc2S4PcvxTzuEQcNgMHz99XcFZFI4w/FmaRFcCs8JzmAmRXYRYn8eFDHBpGwbIpC83Vqd1coXthKHkwl+gfIxycaIgPH57sYQ2FY1PU5hhohGXDUAs5IxMF8dUpFEi3ct+cwLr1e8jEyjT6DwijBZXUuvZ3dZItnEO36mLPKZXsMjkDobOpS0Gzbc3Ykv/ryY+Tk/mqlVWKCbAKS4Gxpn/Jmmgm8fAuuPj3mNOjWbdA9ZCyMc8eQyqycrLGbkr8ixFxpsdS8EtB9VWTVd/WUy9HsrSZo6GBZMT/gKRAnYFs=

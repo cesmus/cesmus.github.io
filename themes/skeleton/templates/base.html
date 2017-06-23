@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>{% block title %}{{ SITENAME|lower }}&middot;&middot; {% endblock title %}</title>
+    <meta name="description" content="{% block meta_description %}{{ SITENAME }}, {{ TAGLINE }}{% endblock meta_description %}">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Feeds -->
+    {% if FEED_ALL_ATOM %}
+    <link rel="alternate" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" title="{{ SITENAME }} Atom Feed" />
+    {% endif %}
+    {% if FEED_ALL_RSS %}
+    <link rel="alternate" href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Overpass|Overpass+Mono" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/custom.css">
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/pygments.css">
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    {% block head_js %}
+    {% endblock %}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ SITEURL }}/theme/images/favicon.png">
+
+</head>
+<body>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        <section class="header">
+          <img src="{{ SITEURL }}/theme/images/115040.jpg" class="logo">
+        </section>
+    </div>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container">
+                <ul class="navbar-list">
+                {% for title, link in MENUITEMS %}
+                    <!-- <li class="navbar-item"><a href="{{ SITEURL }}/{{ link }}" class="navbar-link">{{ title }}</a></li> -->
+                    <li class="navbar-item"><a href="{{ link }}" class="navbar-link">{{ title }}</a></li>
+                {% endfor %}
+                {% for title, link in SOCIAL %}
+                    <li class="navbar-icon">
+                        <a href="{{ link }}">
+                            <i class="fa fa-{{ title }} fa-fw fa-2x"></i>
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+
+    {% include 'analytics.html' %}
+
+</body>
+</html>

@@ -2,4 +2,4 @@
 Title: About
 ---
 
-about me page
+linux | python | web

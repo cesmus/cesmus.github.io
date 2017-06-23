@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ super() }} {{ page.title|striptags }}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <section class="post-content">
+        {{ page.content }}
+    </section>
+    {% include 'footer.html' %}
+</div>
+{% endblock content %}
