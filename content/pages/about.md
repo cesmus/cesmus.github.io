@@ -1,5 +1,4 @@
----
-Title: About
----
+title: About
+status: published
 
 linux | python | web
