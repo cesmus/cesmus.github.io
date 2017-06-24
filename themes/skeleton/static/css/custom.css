@@ -149,7 +149,7 @@ a {
 .pagination {
     color: #210;
     font-family: 'Bitter',sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin: 3rem;
     position: relative;
     text-align: center;
@@ -160,7 +160,7 @@ a {
 .footer {
     color: #1c1f24;
     font-family: 'Bitter',sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 1.75em;
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -196,4 +196,17 @@ code {
 
 a:hover {
     color: #d7f57d;
+}
+
+/**/
+.infobox {
+    list-style: outside none none;
+}
+
+.quote {
+    font-size: 3rem;
+    color: #135;
+    margin-bottom: 2.7rem;
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
 }
