@@ -4,6 +4,8 @@ date: 2017-06-21 10:38
 category: exiftool
 tags: exiftool, web, metadata
 
+**Hack** meta information{: .quote}
+
 > <http://owl.phy.queensu.ca/~phil/exiftool/>
 
 ## General Information
@@ -21,13 +23,13 @@ Meta information is stored in tags and they are associated in groups. Here a lis
 
 * File: system information
 * EXIF: (Exchangeable image file format) [JEITA](http://www.jeita.or.jp/english/) standard
-* MakerNotes: metadata from maker
+* MakerNotes: additional meta information from maker
 * IPTC IIM: (IPTC Information Interchange Model) [International Press Telecommunications Council](https://iptc.org/)
 * XMP: Adobe's XMP standard [Adobe's XMP](https://www.adobe.com/products/xmp.html)
 
-### Examples
+### Quick Examples
 
-Some common actions performed on files with ExifTool:
+Some common actions I usually perform with ExifTool:
 
 Action                            | Command
 --------------------------------- | -------

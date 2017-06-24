@@ -35,12 +35,15 @@ tags: markdown, markup, web
 
 Markdown is two things:
 
-1. a plain text formatting syntax
-2. a software converter that converts the plain text to valid HTML
+1. a plain text formatting syntax.
+2. a software converter that converts the plain text to valid HTML.
 
-The original implementation of Markdown is written in a Perl script `Markdown.pl`.
+Markdown specifically is a family of syntaxes that are based on the original work of John Gruber with substantial contributions from Aaron Swartz. Since its release, a number of web or web-facing applications have incorporated Markdown into their text-entry systems, frequently with custom extensions.
+Fed up with the complexity and security pitfalls of formal markup languages (e.g., HTML5) and proprietary binary formats (e.g., commercial word-processing software), yet unwilling to be confined to the restrictions of plain text, many users have turned to Markdown for document processing.  Whole toolchains now exist to support Markdown for online and offline projects.
 
-Markdown is the most commonly used lightweight markup language on the internet.
+The original implementation of Markdown is written in a Perl script called `Markdown.pl`.
+
+Despite Markdown being the **most commonly used lightweight markup language on the internet**, it does not have a specification, lacks some common features found in other markup languages and does not have a clear translation for most HTML tags.
 
 ### Lack of standard
 
@@ -48,11 +51,11 @@ There is no clearly defined Markdown standard, John Gruber’s canonical descrip
 
 As Markdown became more popular, more and more sites started to implement their own Markdown. This has make it hard to port Markdown between sites and versions.
 
-In the last few years, **CommonMark** was developed as a standardized Markdown but adoption has been slow but there are plans to announce a finalized 1.0 spec in 2017.
+In the last few years, **CommonMark** was developed as a standardized effort on Markdown and there are plans to announce a finalized 1.0 spec in 2017.
 
 ### Lack of extensibility
 
-The lack of some features in the original Markdown saw the birth of more _Markdown extensions_ variants such as **Markdown Extra** (PHP, Python, Ruby), **MultiMarkdown** (Perl) and **Pandoc Markdown** (Haskell).
+The lack of some features and bugs found in the original Markdown code saw the birth of more _Markdown extensions_ variants such as **Markdown Extra** (PHP, Python, Ruby), **MultiMarkdown** (Perl) and **Pandoc Markdown** (Haskell).
 
 ### CommonMark
 [Website](http://commonmark.org)

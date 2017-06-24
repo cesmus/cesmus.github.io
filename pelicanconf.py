@@ -78,7 +78,9 @@ LINKEDIN_USERNAME = ''
 STATCOUNTER = ''
 DISQUS_SITENAME = 'cesmus.github.io'
 MENUITEMS = [('Home', '/'),
-             ('About', '/about/'),
+             ('js', '/js/'),
+             ('css', '/css/'),
+             ('about', '/about/'),
              ]
 DATE_FORMATS = {
     'en': '%Y-%m-%d',
