@@ -62,6 +62,8 @@ The lack of some features and bugs found in the original Markdown code saw the b
 
 CommonMark propose a **standard, unambiguous syntax specification for Markdown**, along with a **suite of comprehensive tests** to validate Markdown implementations against the specification.
 
+For further information about CommonMark, read more 
+
 ### Quick Examples
 
 #### `md_syntax.md`
