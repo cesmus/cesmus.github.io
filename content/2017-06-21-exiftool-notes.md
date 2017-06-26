@@ -4,13 +4,15 @@ date: 2017-06-21 10:38
 category: exiftool
 tags: exiftool, web, metadata
 
-**Hack** meta information{: .quote}
+<div markdown="1" class="quote">
+**Hack** meta information
+</div>
 
 > <http://owl.phy.queensu.ca/~phil/exiftool/>
 
 ## General Information
 
-**ExifTool** is a powerful Perl library (`Image::ExifTool`) that comes with a command-line interface (`exiftool`) that reads, writes and edits meta information in image, audio, video, PDF and many others files.
+**ExifTool** is a powerful Perl library (`Image::ExifTool`) that comes with a command-line interface (`exiftool`) that reads, writes and edits meta information in image, audio, video, PDF and many others files. This makes **ExifTool** a valuable tool to use before exposing undesired information online. 
 
 Below you will find some common uses of ExifTool for reading and manipulating metadata in media files.
 Be sure to visit [ExifTool's website](http://owl.phy.queensu.ca/~phil/exiftool/) to see more of what it does and [ExifTool's examples](http://owl.phy.queensu.ca/~phil/exiftool/examples.html) to see how to work with it.
