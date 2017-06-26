@@ -165,15 +165,20 @@ about page
 ```
 
 ### Dingus
-[Daring Fireball: Markdown dingus](https://daringfireball.net/projects/markdown/dingus)
-[PHP Markdown dingus](https://michelf.ca/projects/php-markdown/dingus/)
+
+Try your Markdown online:
+
+- [Daring Fireball: Markdown dingus](https://daringfireball.net/projects/markdown/dingus)
+- [PHP Markdown dingus](https://michelf.ca/projects/php-markdown/dingus/)
+- [Fountain.io](https://fountain.io/dingus)
+- [CommonMark](http://spec.commonmark.org/dingus/)
 
 
 ### Markdown Extra
 
 Markdown Extra is an extension with some features currently not available with the plain Markdown syntax, and was initially implemented in PHP Markdown.
 
-[Website]https://michelf.ca/projects/php-markdown/extra/
+[Website](https://michelf.ca/projects/php-markdown/extra/)
 
 #### PHP Markdown (PHP)
 PHP Markdown implements plain Markdown syntax and PHP Markdown Extra implements Markdown Extra.
@@ -181,7 +186,7 @@ PHP Markdown implements plain Markdown syntax and PHP Markdown Extra implements 
 [Website](https://michelf.ca/projects/php-markdown/) | [GiHub](https://github.com/michelf/php-markdown)
 
 #### Python Markdown (Python)
-Python variation of Markdown Extra.
+Python implementation of Markdown, contains:
 
 - Python Markdown (original Markdown syntax)
 - Python Markdown extensions (Markdown Extra + more extensions (official and third party) + Extensions API)
@@ -199,15 +204,15 @@ MultiMarkdown (MMD) is a superset of the original. It adds multiple syntax featu
 * [List of Markdown Implementations](https://github.com/markdown/markdown.github.com/wiki/Implementations)
 * [List of CommonMark implementations](https://github.com/jgm/CommonMark/wiki/List-of-CommonMark-Implementations)
 
-There are many implementations of Markdown in most programming languages. Below some of the most popular ones:
+Below some of the most popular implementations of Markdown:
 
 #### Pandoc (Haskell)
-Pandoc is an open source software document converter. It can convert files from one markup to another. It is a swiss-army knife for document conversion.
+Pandoc is an open source software document converter. It can convert files from one markup to another. It is the Swiss Army knife for document conversion.
 
 [Website](http://pandoc.org/)
 
 #### GitHub Flavored Markdown
-GitHub Flavored Markdown (GFM) is the dialect of Markdown currently supported for user content at GitHub. GFM is a strict superset of CommonMark, all new features not specified in the original CommonMark Spec are hence known as **extensions**.
+GitHub Flavored Markdown (GFM) is the dialect of Markdown currently supported for user content at GitHub. GFM is a strict superset of CommonMark, all features not specified in the original CommonMark Spec are known as **extensions**.
 
 [Website](https://github.github.com/gfm/)
 
