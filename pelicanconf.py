@@ -26,6 +26,12 @@ LINKS = ()
 # Social widget
 SOCIAL = ()
 
+# Theme config
+THEME = 'themes/skeleton'
+# THEME = 'themes/pelican-bootstrap3'
+# JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
+# DOCUTIL_CSS = True
+
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
@@ -38,13 +44,24 @@ ARTICLE_EXCLUDES = ['notebooks']
 EXTRA_PATH_METADATA = {
     # 'images/favicon.png': {'path': 'favicon.png'},
     #'extra/CNAME': {'path': 'CNAME'},
+    'extra/robots.txt': {'path': 'robots.txt'}
 }
-THEME = 'themes/skeleton'
-MD_EXTENSIONS = ['extra',
-            'toc',
-            'headerid',
-            'codehilite(css_class=highlight, guess_lang=False, linenums=False)',
-            ]
+MARKDOWN = {
+    'extension_configs': {
+        'markdown.extensions.codehilite': {'css_class': 'highlight'},
+        'markdown.extensions.extra': {},
+        'markdown.extensions.meta': {},
+        'markdown.extensions.toc': {},
+        'markdown.extensions.headerid': {},
+    },
+    'output_format': 'html5',
+    'lazy_ol': False,
+}
+# MD_EXTENSIONS = ['extra',
+#             'toc',
+#             'headerid',
+#             'codehilite(css_class=highlight, guess_lang=False, linenums=False, use_pygments=True)',
+#             ]
 DEFAULT_PAGINATION = 20
 PAGINATION_PATTERNS = (
     (1, '{base_name}/', '{base_name}/index.html'),

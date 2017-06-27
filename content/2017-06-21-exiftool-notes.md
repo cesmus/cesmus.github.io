@@ -1,8 +1,10 @@
+---
 title: ExifTool notes
 slug: exiftool-notes
 date: 2017-06-21 10:38
 category: exiftool
 tags: exiftool, web, metadata
+---
 
 <div markdown="1" class="quote">
 **Hack** meta information

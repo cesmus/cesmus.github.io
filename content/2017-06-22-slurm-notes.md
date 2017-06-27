@@ -1,9 +1,10 @@
+---
 title: SLURM notes
 slug: slurm-notes
 date: 2017-06-22 10:38
 category: slurm
 tags: slurm, hpc
-
+---
 
 SLURM is an open-source resource manager designed for Linux clusters of all sizes. It provides three key functions:
 

@@ -1,8 +1,10 @@
+---
 title: Markdown notes
 slug: markdown-notes
 date: 2017-06-19 23:58
 category: markdown
-tags: markdown, markup, web
+tags: markdown, markup, web, html
+---
 
 # Markdown
 
@@ -139,13 +141,15 @@ Some good readings about READMEs:
 
 #### `content/my_first_blog.md`
 ```markdown
+---
 Title: Blog Title
-slug: blog-title
+Slug: blog-title
 Date: 2017-06-22 18:05
 Category: blog
 Tags: blog, foo, bar
 Authors: Foo Bar
 Summary: A test blog entry
+---
 
 blog entry.
 ```
