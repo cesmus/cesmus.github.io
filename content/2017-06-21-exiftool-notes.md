@@ -1,6 +1,6 @@
 ---
-title: ExifTool notes
-slug: exiftool-notes
+title: ExifTool
+slug: exiftool
 date: 2017-06-21 10:38
 category: exiftool
 tags: exiftool, web, metadata
