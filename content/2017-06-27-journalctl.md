@@ -1,7 +1,7 @@
 ---
 title: journalctl
 slug: journalctl
-date: 2017-07-02 10:38
+date: 2017-06-27 10:38
 category: linux
 tags: linux, systemd, journalctl
 ---
