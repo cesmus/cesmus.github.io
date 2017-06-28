@@ -47,17 +47,17 @@ May 06 23:00:44 fedora kernel: Command line: BOOT_IMAGE=/vmlinuz-4.2.3-300.fc23.
 ...
 ```
 
-- Display all collected logs in UTC time:
+- Display all collected logs in UTC time and truncate output (--utc, --no-full):
 ```bash hl_lines="1"
-$ journalctl --utc
+$ journalctl --utc --no-full
 -- Logs begin at Fri 2016-05-06 04:00:44 GMT, end at Tue 2017-06-27 17:39:12 GMT. --
-May 07 04:00:44 fedora systemd-journal[200]: Runtime journal is using 8.0M (max allowed 292.3M, trying to leave 438.5M free of 2.8G available → current limit 292.3M).nt limit 292.3M).
-May 07 04:00:44 fedora systemd-journal[200]: Runtime journal is using 8.0M (max allowed 292.3M, trying to leave 438.5M free of 2.8G available → current limit 292.3M).nt limit 292.3M).
+May 07 04:00:44 fedora systemd-journal[200]: Runtime journal is using 8.0M (max allowed 292.3M, trying to leave 438.5M free of 2.8G availa...t 292.3M).
+May 07 04:00:44 fedora systemd-journal[200]: Runtime journal is using 8.0M (max allowed 292.3M, trying to leave 438.5M free of 2.8G availa...t 292.3M).
 May 07 04:00:44 fedora kernel: microcode: CPU0 microcode updated early to revision 0x1b, date = 2014-05-29
 May 07 04:00:44 fedora kernel: Initializing cgroup subsys cpuset
 May 07 04:00:44 fedora kernel: Initializing cgroup subsys cpu
 May 07 04:00:44 fedora kernel: Initializing cgroup subsys cpuacct
-May 07 04:00:44 fedora kernel: Linux version 4.2.3-300.fc23.x86_64 (mockbuild@bkernel02.phx2.fedoraproject.org) (gcc version 5.1.1 20150618 (Red Hat 5.1.1-4) (GCC) ) #1 SMP Mon Oct 5 15:42:54 UTC 2015
+May 07 04:00:44 fedora kernel: Linux version 4.2.3-300.fc23.x86_64 (mockbuild@bkernel02.phx2.fedoraproject.org) (gcc version 5.1.1 201506... UTC 2015
 May 07 04:00:44 fedora kernel: Command line: BOOT_IMAGE=/vmlinuz-4.2.3-300.fc23.x86_64 root=/dev/sda4 ro rhgb quiet LANG=en_US.UTF-8
 ...
 ```
