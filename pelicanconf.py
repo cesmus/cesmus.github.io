@@ -57,11 +57,7 @@ MARKDOWN = {
     'output_format': 'html5',
     'lazy_ol': False,
 }
-# MD_EXTENSIONS = ['extra',
-#             'toc',
-#             'headerid',
-#             'codehilite(css_class=highlight, guess_lang=False, linenums=False, use_pygments=True)',
-#             ]
+
 DEFAULT_PAGINATION = 20
 PAGINATION_PATTERNS = (
     (1, '{base_name}/', '{base_name}/index.html'),
@@ -76,24 +72,36 @@ PLUGINS = [
            ]
 DISPLAY_CATEGORIES_ON_MENU = True
 DISPLAY_PAGES_ON_MENU = False
-DIRECT_TEMPLATES = ('index', 'archives')
+
+DIRECT_TEMPLATES = ('index', 'archives', 'sitemap')
+
+SITEMAP_SAVE_AS = 'sitemap.xml'
+
 ARCHIVES_SAVE_AS = 'archives/index.html'
 ARTICLE_URL = '{slug}/'
 ARTICLE_SAVE_AS = '{slug}/index.html'
+
 PAGE_URL = '{slug}/'
 PAGE_SAVE_AS = '{slug}/index.html'
+
 TAG_URL = 'tag/{slug}/'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
 TAGS_SAVE_AS = ''
+
 AUTHOR_URL = ''
 AUTHOR_SAVE_AS = ''
+
 CATEGORY_URL = ''
 CATEGORY_SAVE_AS = ''
+
 TWITTER_USERNAME = ''
 GITHUB_USERNAME = 'cesmus'
 LINKEDIN_USERNAME = ''
+
 STATCOUNTER = ''
+
 DISQUS_SITENAME = 'cesmus.github.io'
+
 MENUITEMS = [('Home', '/'),
              ('js', '/js/'),
              ('css', '/css/'),
