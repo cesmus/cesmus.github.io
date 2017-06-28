@@ -1,7 +1,7 @@
 ---
 title: JavaScript
 slug: js
-status: published
+status: hidden
 ---
 
 JavaScript lab

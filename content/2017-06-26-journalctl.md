@@ -138,58 +138,111 @@ journalctl /dev/sda
 journalctl -f -u httpd
 ```
 
-- Output logs with metadata:
+- Output to STDOUT (--no-pager):
+```bash
+journalctl --no-pager
+```
+
+- Output logs with metadata (-u/--unit=, -o/--output=):
 ```bash hl_lines="1"
-$ journalctl -o verbose
--- Logs begin at Fri 2016-05-06 23:00:44 -05, end at Tue 2017-06-27 15:01:01 -05. --
-Fri 2016-05-06 23:00:44.145769 -05 [s=980d50e2f0c8457683aded28f925ac07;i=1;b=bdac7df248b14ba0aab46c6e3e3c84f1;m=19c55f;t=532389e9c2c69;x=ee8ab73f8410
-    PRIORITY=6
-    _TRANSPORT=driver
-    MESSAGE=Runtime journal is using 8.0M (max allowed 292.3M, trying to leave 438.5M free of 2.8G available → current limit 292.3M).
-    MESSAGE_ID=ec387f577b844b8fa948f33cad9a75e6
-    _PID=200
+$ journalctl --unit=sshd --output=verbose
+-- Logs begin at Fri 2016-05-06 23:00:44 -05, end at Tue 2017-06-27 21:55:41 -05. --
+Tue 2016-09-13 22:35:49.589544 -05 [s=d661e680791b4ca58c41e2586853a08e;i=4c05;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e3384e;t=53c6f6ce5cfda;x=93840
+    _BOOT_ID=fb1bfa6113b6450a854607c6b628f1a6
+    _MACHINE_ID=2682a64ca8a14ecd955b5c07536950ae
+    _HOSTNAME=fedora
+    _PID=1
     _UID=0
+    SYSLOG_FACILITY=3
     _GID=0
-    _COMM=systemd-journal
-    _EXE=/usr/lib/systemd/systemd-journald
-    _CMDLINE=/usr/lib/systemd/systemd-journald
-    _CAP_EFFECTIVE=25402800cf
-    _SYSTEMD_CGROUP=/system.slice/systemd-journald.service
-    _SYSTEMD_UNIT=systemd-journald.service
-    _SYSTEMD_SLICE=system.slice
-    _BOOT_ID=bdac7df248b14ba0aab46c6e3e3c84f1
-    _MACHINE_ID=2682a64ca8a14ec5512b5c07536950ae
+    _CAP_EFFECTIVE=3fffffffff
+    PRIORITY=6
+    CODE_FILE=src/core/unit.c
+    CODE_LINE=1413
+    CODE_FUNCTION=unit_status_log_starting_stopping_reloading
+    SYSLOG_IDENTIFIER=systemd
+    MESSAGE_ID=7d4958e842da4a758f6c1cdc7b36dcc5
+    _TRANSPORT=journal
+    _COMM=systemd
+    _EXE=/usr/lib/systemd/systemd
+    _CMDLINE=/usr/lib/systemd/systemd --switched-root --system --deserialize 21
+    _SYSTEMD_CGROUP=/
+    _SYSTEMD_SLICE=-.slice
+    UNIT=sshd.service
+    MESSAGE=Starting OpenSSH server daemon...
+    _SOURCE_REALTIME_TIMESTAMP=1473824149589544
     ...
 ```
 
-- Output as a binary stream suitable for backups and network transfers:
+- Output as a binary stream suitable for backups and network transfers (-u/--unit=, -o/--output=):
 ```bash hl_lines="1"
-$ journalctl -o export
-__CURSOR=s=980d50e2f0c8457683aded28f925ac07;i=1;b=bdac7df248b14ba0aab46c6e3e3c84f1;m=19c55f;t=532389e9c2c69;x=ee8ab73f8410598b
-__REALTIME_TIMESTAMP=1462593644145769
-__MONOTONIC_TIMESTAMP=1688927
-_BOOT_ID=bdac7df248b14ba0aab46c6e3e3c84f1
-PRIORITY=6
-_TRANSPORT=driver
-MESSAGE=Runtime journal is using 8.0M (max allowed 292.3M, trying to leave 438.5M free of 2.8G available → current limit 292.3M).
-MESSAGE_ID=ec387f577b844b8fa948f33cad9a75e6
-_PID=200
+$ journalctl -u sshd -o export
+...
+__CURSOR=s=d661e680791b4ca58c41e2586853a08e;i=4c06;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e4069f;t=53c6f6ce69e2b;x=6270e5cdc028239f
+__REALTIME_TIMESTAMP=1473824149642795
+__MONOTONIC_TIMESTAMP=351229183647
+_BOOT_ID=fb1bfa6113b6450a854607c6b628f1a6
+_MACHINE_ID=2682a64ca8a14ecd955b5c07536950ae
+_HOSTNAME=fedora
 _UID=0
+_TRANSPORT=syslog
 _GID=0
-_COMM=systemd-journal
-_EXE=/usr/lib/systemd/systemd-journald
-_CMDLINE=/usr/lib/systemd/systemd-journald
-_CAP_EFFECTIVE=25402800cf
-_SYSTEMD_CGROUP=/system.slice/systemd-journald.service
-_SYSTEMD_UNIT=systemd-journald.service
+_CAP_EFFECTIVE=3fffffffff
 _SYSTEMD_SLICE=system.slice
-_MACHINE_ID=2682a64ca8a14ec5512b5c07536950ae
+PRIORITY=6
+SYSLOG_FACILITY=10
+SYSLOG_IDENTIFIER=sshd
+SYSLOG_PID=6565
+MESSAGE=Server listening on 0.0.0.0 port 22.
+_PID=6565
+_COMM=sshd
+_EXE=/usr/sbin/sshd
+_CMDLINE=/usr/sbin/sshd
+_SYSTEMD_CGROUP=/system.slice/sshd.service
+_SYSTEMD_UNIT=sshd.service
+_SOURCE_REALTIME_TIMESTAMP=1473824149642517
 ...
 ```
 
-- Output as JSON data suitable for web:
-```bash
-journalctl -o json
+- Output entries as one per line JSON data suitable for web (-u/--unit=, -o/--output=):
+```bash hl_lines="1"
+$ journalctl --unit sshd -o json
+{ "__CURSOR" : "s=d661e680791b4ca58c41e2586853a08e;i=4c05;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e3384e;t=53c6f6ce5cfda;x=938403ae0d5dcef3", "__REALTIME_TIMESTAMP" : "1473824149589978", "__MONOTONIC_TIMESTAMP" : "351229130830", "_BOOT_ID" : "fb1bfa6113b6450a854607c6b628f1a6", "_MACHINE_ID" : "2682a64ca8a14ecd955b5c07536950ae", "_HOSTNAME" : "fedora", "_PID" : "1", "_UID" : "0", "SYSLOG_FACILITY" : "3", "_GID" : "0", "_CAP_EFFECTIVE" : "3fffffffff", "PRIORITY" : "6", "CODE_FILE" : "src/core/unit.c", "CODE_LINE" : "1413", "CODE_FUNCTION" : "unit_status_log_starting_stopping_reloading", "SYSLOG_IDENTIFIER" : "systemd", "MESSAGE_ID" : "7d4958e842da4a758f6c1cdc7b36dcc5", "_TRANSPORT" : "journal", "_COMM" : "systemd", "_EXE" : "/usr/lib/systemd/systemd", "_CMDLINE" : "/usr/lib/systemd/systemd --switched-root --system --deserialize 21", "_SYSTEMD_CGROUP" : "/", "_SYSTEMD_SLICE" : "-.slice", "UNIT" : "sshd.service", "MESSAGE" : "Starting OpenSSH server daemon...", "_SOURCE_REALTIME_TIMESTAMP" : "1473824149589544" }
+...
+```
+
+- Output entries as human-readable JSON data suitable for web (-u/--unit=, -o/--output=):
+```bash hl_lines="1"
+$ journalctl --unit sshd -o json-pretty
+{
+        "__CURSOR" : "s=d661e680791b4ca58c41e2586853a08e;i=4c05;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e3384e;t=53c6f6ce5cfda;x=938403ae0d5dcef3",
+        "__REALTIME_TIMESTAMP" : "1473824149589978",
+        "__MONOTONIC_TIMESTAMP" : "351229130830",
+        "_BOOT_ID" : "fb1bfa6113b6450a854607c6b628f1a6",
+        "_MACHINE_ID" : "2682a64ca8a14ecd955b5c07536950ae",
+        "_HOSTNAME" : "fedora",
+        "_PID" : "1",
+        "_UID" : "0",
+        "SYSLOG_FACILITY" : "3",
+        "_GID" : "0",
+        "_CAP_EFFECTIVE" : "3fffffffff",
+        "PRIORITY" : "6",
+        "CODE_FILE" : "src/core/unit.c",
+        "CODE_LINE" : "1413",
+        "CODE_FUNCTION" : "unit_status_log_starting_stopping_reloading",
+        "SYSLOG_IDENTIFIER" : "systemd",
+        "MESSAGE_ID" : "7d4958e842da4a758f6c1cdc7b36dcc5",
+        "_TRANSPORT" : "journal",
+        "_COMM" : "systemd",
+        "_EXE" : "/usr/lib/systemd/systemd",
+        "_CMDLINE" : "/usr/lib/systemd/systemd --switched-root --system --deserialize 21",
+        "_SYSTEMD_CGROUP" : "/",
+        "_SYSTEMD_SLICE" : "-.slice",
+        "UNIT" : "sshd.service",
+        "MESSAGE" : "Starting OpenSSH server daemon...",
+        "_SOURCE_REALTIME_TIMESTAMP" : "1473824149589544"
+}
+...
 ```
 
 - Display entries that matches the expression:

@@ -1,7 +1,7 @@
 ---
 title: CSS
 slug: css
-status: published
+status: hidden
 ---
 
 CSS lab
