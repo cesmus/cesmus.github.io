@@ -2,7 +2,7 @@
 title: systemd: journalctl
 slug: journalctl
 date: 2017-06-26 10:38
-updated: 2017-06-27 11:38
+updated: 2017-06-27 20:38
 category: linux
 tags: linux, systemd, journalctl
 ---
@@ -19,7 +19,7 @@ The journal is implemented with the `journald` daemon and `journalctl` is the to
 
 ## journalctl
 
-`journalctl` may be used to query the contents of the `systemd` journal. It also offers excellent filtering capabilities.
+`journalctl` is used to query the contents of the `systemd` journal.
 
 All users are granted access to their private per-user journals. However, by default, only root and users who are members of a few special groups are granted access to the system journal and the journals of other users. Members of the groups `systemd-journal`, `adm`, and `wheel` can read all journal files.
 

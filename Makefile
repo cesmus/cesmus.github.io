@@ -38,6 +38,14 @@ ifeq ($(RELATIVE), 1)
 	PELICANOPTS += --relative-urls
 endif
 
+## newpost, editpost, newpage, editpage
+EDITOR=vim
+PAGESDIR=$(INPUTDIR)/pages
+DATE := $(shell date +'%Y-%m-%d %H:%M:%S')
+POSTDATE := $(shell date +'%Y-%m-%d')
+SLUG := $(shell echo '${NAME}' | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z)
+EXT ?= md
+
 help:
 	@echo 'Makefile for a pelican Web site                                           '
 	@echo '                                                                          '
@@ -123,4 +131,52 @@ github: publish
 	@git push -fq https://${GH_TOKEN}@github.com/$(TRAVIS_REPO_SLUG).git master
 	# git push origin $(GITHUB_PAGES_BRANCH)
 
-.PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
+newarticle:
+ifdef NAME
+				echo "---" > $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "Title: $(NAME)" >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "Slug: $(SLUG)" >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "Date: $(DATE)" >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "Category: " >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "Tags: " >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "---" >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "" >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				echo "" >> $(INPUTDIR)/$(POSTDATE)-$(SLUG).$(EXT)
+				$(EDITOR) ${INPUTDIR}/${POSTDATE}-${SLUG}.${EXT}
+else
+				@echo 'Variable NAME is not defined.'
+				@echo 'Do make newpost NAME='"'"'Post Name'"'"
+endif
+
+# editarticle:
+# ifdef NAME
+# 				$(EDITOR) ${INPUTDIR}/${POSTDATE}-${SLUG}.${EXT}
+# else
+# 				@echo 'Variable NAME is not defined.'
+# 				@echo 'Do make editpost NAME='"'"'Post Name'"'"
+# endif
+
+newpage:
+ifdef NAME
+				echo "---" > $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "Title: $(NAME)" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "Slug: $(SLUG)" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "Status: published" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "---" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				echo "" >> $(PAGESDIR)/$(SLUG).$(EXT)
+				$(EDITOR) ${PAGESDIR}/${SLUG}.$(EXT)
+else
+				@echo 'Variable NAME is not defined.'
+				@echo 'Do make newpage NAME='"'"'Page Name'"'"
+endif
+
+editpage:
+ifdef NAME
+				$(EDITOR) ${PAGESDIR}/${SLUG}.$(EXT)
+else
+				@echo 'Variable NAME is not defined.'
+				@echo 'Do make editpage NAME='"'"'Page Name'"'"
+endif
+
+.PHONY: html help clean regenerate serve serve-global devserver stopserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github newarticle newpage editpage
