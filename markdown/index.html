@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>cesmus&middot;&middot;  Markdown
+</title>
+    <meta name="description" content="Cesmus, ">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Feeds -->
+    <link rel="alternate" href="/feeds/all.atom.xml" type="application/atom+xml" title="Cesmus Atom Feed" />
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Overpass|Overpass+Mono" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/theme/css/custom.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".container").fitVids();
+        });
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/theme/images/favicon.ico">
+
+</head>
+<body>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        <section class="header">
+          <img src="/theme/images/115040.jpg" class="logo">
+        </section>
+    </div>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container">
+                <ul class="navbar-list u-full-width">
+                    <!-- <li class="navbar-item"><a href="//" class="navbar-link">Home</a></li> -->
+                    <li class="navbar-item"><a href="/" class="navbar-link button">Home</a></li>
+                    <!-- <li class="navbar-item"><a href="//js/" class="navbar-link">js</a></li> -->
+                    <li class="navbar-item"><a href="/js/" class="navbar-link button">js</a></li>
+                    <!-- <li class="navbar-item"><a href="//css/" class="navbar-link">css</a></li> -->
+                    <li class="navbar-item"><a href="/css/" class="navbar-link button">css</a></li>
+                    <!-- <li class="navbar-item"><a href="//about/" class="navbar-link">about</a></li> -->
+                    <li class="navbar-item"><a href="/about/" class="navbar-link button">about</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <section class="post">
+            <header class="post-header">
+                <h3>Markdown</h3>
+                <p class="post-meta">
+                        <a class="post-category button button-primary" href="/tag/markdown/">markdown</a>
+                        <a class="post-category button button-primary" href="/tag/markup/">markup</a>
+                        <a class="post-category button button-primary" href="/tag/web/">web</a>
+                        <a class="post-category button button-primary" href="/tag/html/">html</a>
+                </p>
+            </header>
+        </section>
+        <section class="post-content">
+            <h1 id="markdown">Markdown</h1>
+<table class="infobox u-full-width">
+  <tbody>
+    <tr>
+      <th>Filename extensions</th><td>.md .markdown .mdown .mkdn</td>
+    </tr>
+    <tr>
+      <th>MIME type</th><td>text/markdown</td>
+    </tr>
+    <tr>
+      <th>Developed by</th><td>John Gruber</td>
+    </tr>
+    <tr>
+      <th>Year launched</th><td>2004</td>
+    </tr>
+    <tr>
+      <th>RFCs</th><td><a href="https://tools.ietf.org/html/rfc7763">RFC 7763</a> <a href="https://tools.ietf.org/html/rfc7764">RFC 7764</a></td>
+    </tr>
+    <tr>
+      <th>Website</th><td>http://daringfireball.net/projects/markdown</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="quote">
+  text-to-HTML conversion tool for web writers
+</div>
+
+<p>Markdown is two things:</p>
+<ol>
+<li>a plain text formatting syntax.</li>
+<li>a software converter that converts the plain text to valid HTML.</li>
+</ol>
+<p>Markdown specifically is a family of syntaxes that are based on the original work of John Gruber with substantial contributions from Aaron Swartz. Since its release, a number of web or web-facing applications have incorporated Markdown into their text-entry systems, frequently with custom extensions.</p>
+<p>Due to the complexity and security pitfalls of formal markup languages (e.g., HTML5) and proprietary binary formats (e.g., word-processing software), yet unwilling to be confined to the restrictions of plain text, many users have turned to Markdown for document processing.  Whole toolchains now exist to support Markdown for online and offline projects.</p>
+<p>The original implementation of Markdown is written in a Perl script called <code>Markdown.pl</code>.</p>
+<p>Despite Markdown being the <strong>most commonly used lightweight markup language on the internet</strong>, it does not have a specification, lacks common features found in other markup languages and does not have a clear translation for most HTML tags, and adding HTML code in a Markdown document conflicts with the basic purpose of the language. That being said, Markdown simplicity rocks.</p>
+<h2 id="lack-of-standard">Lack of standard</h2>
+<p>There is no defined Markdown standard, John Gruber’s canonical description of Markdown’s syntax does not specify the syntax unambiguously. This has led to fragmentation as different vendors wrote their own variants of the language.</p>
+<p>As Markdown became more popular, more and more sites started to implement their own Markdown. This has make it hard to port Markdown between sites and versions.</p>
+<p>In the last few years, <strong>CommonMark</strong> was developed as a standardized effort on Markdown and there are plans to announce a finalized 1.0 spec in 2017.</p>
+<h2 id="lack-of-extensibility">Lack of extensibility</h2>
+<p>The lack of some features and bugs found in the original Markdown code saw the birth of more <em>Markdown extensions</em> variants such as <strong>Markdown Extra</strong> (PHP, Python, Ruby), <strong>MultiMarkdown</strong> (Perl) and <strong>Pandoc Markdown</strong> (Haskell).</p>
+<h2 id="commonmark">CommonMark</h2>
+<p><a href="http://commonmark.org">Website</a></p>
+<p>CommonMark propose a <strong>standard, unambiguous syntax specification for Markdown</strong>, along with a <strong>suite of comprehensive tests</strong> to validate Markdown implementations against the specification.</p>
+<p>For further information about CommonMark, read more</p>
+<h2 id="quick-examples">Quick Examples</h2>
+<h4 id="md_syntaxmd"><code>md_syntax.md</code></h4>
+<div class="highlight"><pre><span></span># h1
+## h2
+###### h6
+
+Paragraphs are separated
+by a blank line.
+
+Two spaces at the end of a line leave a  
+line break.
+
+Text attributes _italic_, *italic*, __bold__, **bold**, `monospace`.
+
+Horizontal rule:
+---
+
+Bullet list:
+  - apples
+  - oranges
+  - pears
+
+Numbered list:
+  1. apples
+  2. oranges
+  3. pears
+
+A [link](http://example.com).
+</pre></div>
+
+
+<h4 id="readmemd"><code>README.md</code></h4>
+<div class="highlight"><pre><span></span>## Synopsis
+
+At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+
+## Code Example
+
+Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+
+## Motivation
+
+A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+
+## Installation
+
+Provide code examples and explanations of how to get the project.
+
+## API Reference
+
+Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+
+## Tests
+
+Describe and show how to run the tests with code examples.
+
+## Contributors
+
+Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+
+## License
+
+A short snippet describing the license (MIT, Apache, etc.)
+</pre></div>
+
+
+<p>Some good readings about READMEs:
+- <a href="https://medium.com/@NSomar/readme-md-history-and-components-a365aff07f10">Medium.com: README.md History and Components</a>
+- <a href="https://github.com/repat/README-template">repat README-templates</a>
+- <a href="https://en.wikipedia.org/wiki/README">Wikipedia's README article</a></p>
+<h4 id="contentmy_first_blogmd"><code>content/my_first_blog.md</code></h4>
+<div class="highlight"><pre><span></span>---
+Title: Blog Title
+Slug: blog-title
+Date: 2017-06-22 18:05
+Category: blog
+Tags: blog, foo, bar
+Authors: Foo Bar
+Summary: A test blog entry
+---
+
+blog entry.
+</pre></div>
+
+
+<h4 id="aboutmd"><code>about.md</code></h4>
+<div class="highlight"><pre><span></span>---
+Title: About
+---
+
+about page
+</pre></div>
+
+
+<h2 id="dingus">Dingus</h2>
+<p>Try your Markdown online, they come with a quick Markdown cheatsheet</p>
+<ul>
+<li><a href="https://daringfireball.net/projects/markdown/dingus">Daring Fireball: Markdown dingus</a></li>
+<li><a href="https://michelf.ca/projects/php-markdown/dingus/">PHP Markdown dingus</a></li>
+<li><a href="https://fountain.io/dingus">Fountain.io</a></li>
+<li><a href="http://spec.commonmark.org/dingus/">CommonMark</a></li>
+<li><a href="http://www.symfony-project.org/plugins/markdown_dingus">Symfony Project</a></li>
+</ul>
+<h2 id="markdown-extra">Markdown Extra</h2>
+<p>Markdown Extra is an extension with some features currently not available with the plain Markdown syntax, and was initially implemented in PHP Markdown.</p>
+<p><a href="https://michelf.ca/projects/php-markdown/extra/">Website</a></p>
+<h4 id="php-markdown-php">PHP Markdown (PHP)</h4>
+<p>PHP Markdown implements plain Markdown syntax and PHP Markdown Extra implements Markdown Extra.</p>
+<p><a href="https://michelf.ca/projects/php-markdown/">Website</a> | <a href="https://github.com/michelf/php-markdown">GiHub</a></p>
+<h4 id="python-markdown">Python Markdown</h4>
+<p>Python implementation of Markdown, contains:</p>
+<ul>
+<li>Python Markdown (original Markdown syntax)</li>
+<li>Python Markdown extensions (Markdown Extra + more extensions (official and third party) + Extensions API)</li>
+<li>markdown_py (command-line interface)</li>
+</ul>
+<p><a href="https://pythonhosted.org/Markdown/">Website</a></p>
+<h4 id="multimarkdown">MultiMarkdown</h4>
+<p>MultiMarkdown (MMD) is a superset of the original. It adds multiple syntax features (tables, footnotes, citations, etc.) and can output to various formats.</p>
+<p><a href="http://fletcherpenney.net/multimarkdown/">Website</a></p>
+<h2 id="markdown-flavors">Markdown Flavors</h2>
+<ul>
+<li><a href="https://github.com/jgm/CommonMark/wiki/Markdown-Flavors">List of Markdown Flavors</a></li>
+<li><a href="https://github.com/markdown/markdown.github.com/wiki/Implementations">List of Markdown Implementations</a></li>
+<li><a href="https://github.com/jgm/CommonMark/wiki/List-of-CommonMark-Implementations">List of CommonMark implementations</a></li>
+</ul>
+<p>Below some of the most popular implementations of Markdown:</p>
+<h4 id="pandoc-haskell">Pandoc (Haskell)</h4>
+<p>Pandoc is an open source software document converter. It can convert files from one markup to another. It is the Swiss Army knife for document conversion.</p>
+<p><a href="http://pandoc.org/">Website</a></p>
+<h4 id="github-flavored-markdown">GitHub Flavored Markdown</h4>
+<p>GitHub Flavored Markdown (GFM) is the dialect of Markdown currently supported for user content at GitHub. GFM is a strict superset of CommonMark, all features not specified in the original CommonMark Spec are known as <strong>extensions</strong>.</p>
+<p><a href="https://github.github.com/gfm/">Website</a></p>
+<h4 id="fountainio">Fountain.io</h4>
+<p>Fountain is a simple markup syntax for writing, editing, and sharing screenplays in plain, human-readable text.</p>
+<p><a href="https://fountain.io">Website</a></p>
+<h4 id="kramdown-ruby">kramdown (Ruby)</h4>
+<p>kramdown is a Ruby superset implementation of Markdown written by Thomas Leitner.</p>
+<p><a href="https://kramdown.gettalong.org/">Website</a></p>
+<h4 id="discount-c">Discount (C)</h4>
+<p>Pure C implementation</p>
+<p><a href="http://www.pell.portland.or.us/%7Eorc/Code/discount/">Website</a></p>
+<h4 id="marked-javascript">marked (JavaScript)</h4>
+<p>A full-featured markdown parser and compiler, written in JavaScript. Built for speed.</p>
+<p><a href="https://github.com/chjj/marked">Website</a></p>
+<h2 id="markdown-alternatives">Markdown Alternatives</h2>
+<h4 id="restructuredtext">reStructuredText</h4>
+<p>reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents.</p>
+<p><a href="http://docutils.sourceforge.net/rst.html">Website</a></p>
+<h4 id="textile">Textile</h4>
+<p>Textile is a simple text format that can be converted to HTML, eliminating the need to use HTML directly to create documents, blogs, or web pages. Textile gives you readable text while you’re writing and beautiful text for your readers.</p>
+<p><a href="https://www.promptworks.com/textile">Website</a> | <a href="https://github.com/textile">GitHub</a></p>
+<h4 id="asciidoc">AsciiDoc</h4>
+<p><strong>AsciiDoc</strong> is a text document format for writing notes, documentation, articles, books, ebooks, slideshows, web pages, man pages and blogs. AsciiDoc files can be translated to many formats including HTML, PDF, EPUB, man page.</p>
+<p><a href="http://asciidoc.org/">Website</a></p>
+<h4 id="creole">Creole</h4>
+<p>Creole is a lightweight markup language, aimed at being a common markup language for wikis, enabling and simplifying the transfer of content between different wiki engines.</p>
+<p><a href="http://wikicreole.org/">Website</a></p>
+<p>These wiki engines have implemented full or partial support for Creole such as <a href="http://www.oddmuse.org/">OddMuse</a>, <a href="http://moinmo.in/">MoinMoin</a>, <a href="https://www.dokuwiki.org">DokuWiki</a>, among others. <a href="https://mediawiki.org/">MediaWiki</a> does not support Creole.  </p>
+<h2 id="further-reading">Further reading</h2>
+<p>For further information about Markdown syntax, check the <a href="https://daringfireball.net/projects/markdown/syntax">Daring Fireball: Markdown syntax</a>, <a href="https://michelf.ca/projects/php-markdown/concepts/">PHP Markdown Concepts page</a>, <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Markdown-here Cheatsheet</a>.</p>
+<p>For further information about Markdown, read <a href="https://en.wikipedia.org/wiki/Markdown">Wikipedia</a>.</p>
+        </section>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    // var disqus_shortname = 'danclaudiupop';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><footer>
+  <div class="footer">
+    &copy; cesmus &ndash;
+    2017
+  </div>
+</footer>    </div>
+
+
+</body>
+</html>

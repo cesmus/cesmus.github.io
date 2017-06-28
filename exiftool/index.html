@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>cesmus&middot;&middot;  ExifTool
+</title>
+    <meta name="description" content="Cesmus, ">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Feeds -->
+    <link rel="alternate" href="/feeds/all.atom.xml" type="application/atom+xml" title="Cesmus Atom Feed" />
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Overpass|Overpass+Mono" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/theme/css/custom.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".container").fitVids();
+        });
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/theme/images/favicon.ico">
+
+</head>
+<body>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        <section class="header">
+          <img src="/theme/images/115040.jpg" class="logo">
+        </section>
+    </div>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container">
+                <ul class="navbar-list u-full-width">
+                    <!-- <li class="navbar-item"><a href="//" class="navbar-link">Home</a></li> -->
+                    <li class="navbar-item"><a href="/" class="navbar-link button">Home</a></li>
+                    <!-- <li class="navbar-item"><a href="//js/" class="navbar-link">js</a></li> -->
+                    <li class="navbar-item"><a href="/js/" class="navbar-link button">js</a></li>
+                    <!-- <li class="navbar-item"><a href="//css/" class="navbar-link">css</a></li> -->
+                    <li class="navbar-item"><a href="/css/" class="navbar-link button">css</a></li>
+                    <!-- <li class="navbar-item"><a href="//about/" class="navbar-link">about</a></li> -->
+                    <li class="navbar-item"><a href="/about/" class="navbar-link button">about</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <section class="post">
+            <header class="post-header">
+                <h3>ExifTool</h3>
+                <p class="post-meta">
+                        <a class="post-category button button-primary" href="/tag/exiftool/">exiftool</a>
+                        <a class="post-category button button-primary" href="/tag/web/">web</a>
+                        <a class="post-category button button-primary" href="/tag/metadata/">metadata</a>
+                </p>
+            </header>
+        </section>
+        <section class="post-content">
+            <div class="quote">
+<p><strong>Hack</strong> meta information</p>
+</div>
+<blockquote>
+<p><a href="http://owl.phy.queensu.ca/~phil/exiftool/">http://owl.phy.queensu.ca/~phil/exiftool/</a></p>
+</blockquote>
+<h2 id="overview">Overview</h2>
+<p><strong>ExifTool</strong> is a powerful Perl library (<code>Image::ExifTool</code>) that comes with a command-line interface (<code>exiftool</code>) that reads, writes and edits meta information in image, audio, video, PDF and many others files. This makes <strong>ExifTool</strong> a great tool to use before exposing undesired information online or simply to extract valuable information from media files.</p>
+<p>Below you will find some common uses of ExifTool for both reading and manipulating meta information in media files.</p>
+<p>More Internet resources about ExifTool: <a href="http://owl.phy.queensu.ca/~phil/exiftool/">Website</a> | <a href="https://en.wikipedia.org/wiki/ExifTool">Wikipedia</a> | <a href="http://web.mit.edu/Graphics/src/Image-ExifTool-6.99/html/ExifTool.html">MIT</a> </p>
+<h3 id="tags-groups">Tags &amp; Groups</h3>
+<p>Meta information is stored in tags and they are associated in groups. Here a list of some of the most common groups.</p>
+<ul>
+<li>File: system information.</li>
+<li>EXIF: (Exchangeable image file format) <a href="http://www.jeita.or.jp/english/">JEITA</a> standard</li>
+<li>MakerNotes: additional meta information from maker</li>
+<li>IPTC IIM: (IPTC Information Interchange Model) <a href="https://iptc.org/">International Press Telecommunications Council</a></li>
+<li>XMP: Adobe's XMP standard <a href="https://www.adobe.com/products/xmp.html">Adobe's XMP</a></li>
+</ul>
+<h3 id="quick-examples">Quick Examples</h3>
+<p>Some common actions with ExifTool:</p>
+<ul>
+<li>Extract meta information:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool file.jpg
+</pre></div>
+
+
+<ul>
+<li>Extract all meta information sorted by group (including duplicates and unknown tags)</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -a -u -g1 file.jpg
+</pre></div>
+
+
+<ul>
+<li>Extract common information:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -common file.jpg
+</pre></div>
+
+
+<ul>
+<li>Write meta information:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -createdate<span class="o">=</span><span class="s2">&quot;2017:06:19 23:17:00&quot;</span> file.jpg
+</pre></div>
+
+
+<ul>
+<li>Write meta information to multiple files:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -createdate<span class="o">=</span><span class="s2">&quot;2017:06:19 23:17:00&quot;</span> file1.jpg file2.jpg file3.jpg
+</pre></div>
+
+
+<ul>
+<li>Write meta information to all files in directory:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -createdate<span class="o">=</span><span class="s2">&quot;2017:06:19 23:17:00&quot;</span> images/
+</pre></div>
+
+
+<ul>
+<li>Write multiple tags:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -createdate+<span class="o">=</span><span class="m">3</span> -modifydate+<span class="o">=</span><span class="m">3</span> file.jpg
+</pre></div>
+
+
+<ul>
+<li>Replaces existing comments:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -comment<span class="o">=</span> file.jpg
+</pre></div>
+
+
+<ul>
+<li>Print selected tags:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -ImageSize -ExposureTime file.jpg
+</pre></div>
+
+
+<ul>
+<li>Output meta informaton in tab columns:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -T -createdate -aperture -shutterspeed -iso file.jpg
+</pre></div>
+
+
+<ul>
+<li>Output meta information in html:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -htmldump file.jpg
+</pre></div>
+
+
+<ul>
+<li>Output meta information as json:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -json file.jpg
+</pre></div>
+
+
+<ul>
+<li>Remove all meta information:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -all<span class="o">=</span> file.jpg
+</pre></div>
+
+
+<ul>
+<li>Delete all Photoshop metadata:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -Photoshop:All<span class="o">=</span> file.jpg
+</pre></div>
+
+
+<ul>
+<li>Remove all gps tags:</li>
+</ul>
+<div class="highlight"><pre><span></span>exiftool -gps:all<span class="o">=</span> file.jpg
+</pre></div>
+
+
+<h3 id="tips">Tips</h3>
+<blockquote>
+<p>Do NOT delete meta information in RAW images, sometimes RAW formats contain information in the makernotes that is necessary for converting the image.</p>
+<p>Changes to PDF files by ExifTool are reversible (by deleting the update with "-PDF-update:all=") because the original information is never actually deleted from the file.  So ExifTool alone may not be used to securely edit metadata in PDF files</p>
+</blockquote>
+        </section>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    // var disqus_shortname = 'danclaudiupop';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><footer>
+  <div class="footer">
+    &copy; cesmus &ndash;
+    2017
+  </div>
+</footer>    </div>
+
+
+</body>
+</html>

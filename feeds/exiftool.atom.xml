@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cesmus - exiftool</title><link href="/" rel="alternate"></link><link href="/feeds/exiftool.atom.xml" rel="self"></link><id>/</id><updated>2017-06-21T10:38:00-05:00</updated><entry><title>ExifTool</title><link href="/exiftool/" rel="alternate"></link><published>2017-06-21T10:38:00-05:00</published><updated>2017-06-21T10:38:00-05:00</updated><author><name>Cesmus</name></author><id>tag:None,2017-06-21:/exiftool/</id><summary type="html">&lt;div class="quote"&gt;
+&lt;p&gt;&lt;strong&gt;Hack&lt;/strong&gt; meta information&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="http://owl.phy.queensu.ca/~phil/exiftool/"&gt;http://owl.phy.queensu.ca/~phil/exiftool/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;ExifTool&lt;/strong&gt; is a powerful Perl library (&lt;code&gt;Image::ExifTool&lt;/code&gt;) that comes with a command-line interface (&lt;code&gt;exiftool&lt;/code&gt;) that reads, writes and edits meta information in image, audio, video, PDF and many others files. This makes &lt;strong&gt;ExifTool&lt;/strong&gt; a great tool to use …&lt;/p&gt;</summary><content type="html">&lt;div class="quote"&gt;
+&lt;p&gt;&lt;strong&gt;Hack&lt;/strong&gt; meta information&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="http://owl.phy.queensu.ca/~phil/exiftool/"&gt;http://owl.phy.queensu.ca/~phil/exiftool/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;ExifTool&lt;/strong&gt; is a powerful Perl library (&lt;code&gt;Image::ExifTool&lt;/code&gt;) that comes with a command-line interface (&lt;code&gt;exiftool&lt;/code&gt;) that reads, writes and edits meta information in image, audio, video, PDF and many others files. This makes &lt;strong&gt;ExifTool&lt;/strong&gt; a great tool to use before exposing undesired information online or simply to extract valuable information from media files.&lt;/p&gt;
+&lt;p&gt;Below you will find some common uses of ExifTool for both reading and manipulating meta information in media files.&lt;/p&gt;
+&lt;p&gt;More Internet resources about ExifTool: &lt;a href="http://owl.phy.queensu.ca/~phil/exiftool/"&gt;Website&lt;/a&gt; | &lt;a href="https://en.wikipedia.org/wiki/ExifTool"&gt;Wikipedia&lt;/a&gt; | &lt;a href="http://web.mit.edu/Graphics/src/Image-ExifTool-6.99/html/ExifTool.html"&gt;MIT&lt;/a&gt; &lt;/p&gt;
+&lt;h3 id="tags-groups"&gt;Tags &amp;amp; Groups&lt;/h3&gt;
+&lt;p&gt;Meta information is stored in tags and they are associated in groups. Here a list of some of the most common groups.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;File: system information.&lt;/li&gt;
+&lt;li&gt;EXIF: (Exchangeable image file format) &lt;a href="http://www.jeita.or.jp/english/"&gt;JEITA&lt;/a&gt; standard&lt;/li&gt;
+&lt;li&gt;MakerNotes: additional meta information from maker&lt;/li&gt;
+&lt;li&gt;IPTC IIM: (IPTC Information Interchange Model) &lt;a href="https://iptc.org/"&gt;International Press Telecommunications Council&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;XMP: Adobe's XMP standard &lt;a href="https://www.adobe.com/products/xmp.html"&gt;Adobe's XMP&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="quick-examples"&gt;Quick Examples&lt;/h3&gt;
+&lt;p&gt;Some common actions with ExifTool:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Extract meta information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Extract all meta information sorted by group (including duplicates and unknown tags)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -a -u -g1 file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Extract common information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -common file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write meta information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2017:06:19 23:17:00&amp;quot;&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write meta information to multiple files:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2017:06:19 23:17:00&amp;quot;&lt;/span&gt; file1.jpg file2.jpg file3.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write meta information to all files in directory:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2017:06:19 23:17:00&amp;quot;&lt;/span&gt; images/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write multiple tags:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate+&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt; -modifydate+&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Replaces existing comments:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -comment&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Print selected tags:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -ImageSize -ExposureTime file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output meta informaton in tab columns:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -T -createdate -aperture -shutterspeed -iso file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output meta information in html:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -htmldump file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output meta information as json:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -json file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Remove all meta information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -all&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Delete all Photoshop metadata:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -Photoshop:All&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Remove all gps tags:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -gps:all&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="tips"&gt;Tips&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do NOT delete meta information in RAW images, sometimes RAW formats contain information in the makernotes that is necessary for converting the image.&lt;/p&gt;
+&lt;p&gt;Changes to PDF files by ExifTool are reversible (by deleting the update with "-PDF-update:all=") because the original information is never actually deleted from the file.  So ExifTool alone may not be used to securely edit metadata in PDF files&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="exiftool"></category><category term="web"></category><category term="metadata"></category></entry></feed>

@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Cesmus</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2017-06-26T10:38:00-05:00</updated><entry><title>systemd: journalctl</title><link href="/journalctl/" rel="alternate"></link><published>2017-06-26T10:38:00-05:00</published><updated>2017-06-26T10:38:00-05:00</updated><author><name>Cesmus</name></author><id>tag:None,2017-06-26:/journalctl/</id><summary type="html">&lt;p&gt;One of the greatest features of &lt;code&gt;systemd&lt;/code&gt; is its system logging, the journal.&lt;/p&gt;
+&lt;h2 id="the-journal"&gt;The Journal&lt;/h2&gt;
+&lt;p&gt;The journal, according to the developers, is a logging scheme that provides structured, indexed and reliable logging on systemd systems, while providing a certain degree of compatibility with classic syslog implementations.&lt;/p&gt;
+&lt;p&gt;In more detail, the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;One of the greatest features of &lt;code&gt;systemd&lt;/code&gt; is its system logging, the journal.&lt;/p&gt;
+&lt;h2 id="the-journal"&gt;The Journal&lt;/h2&gt;
+&lt;p&gt;The journal, according to the developers, is a logging scheme that provides structured, indexed and reliable logging on systemd systems, while providing a certain degree of compatibility with classic syslog implementations.&lt;/p&gt;
+&lt;p&gt;In more detail, the journal is a component of systemd, that captures Syslog messages, Kernel log messages, initial RAM disk and early boot messages as well as messages written to STDOUT/STDERR of all services, indexes them and stores them in binary files called &lt;em&gt;journals&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The journal is implemented with the &lt;code&gt;journald&lt;/code&gt; daemon and &lt;code&gt;journalctl&lt;/code&gt; is the tool to query the journal.&lt;/p&gt;
+&lt;h2 id="journalctl"&gt;journalctl&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;journalctl&lt;/code&gt; is used to query the contents of the &lt;code&gt;systemd&lt;/code&gt; journal.&lt;/p&gt;
+&lt;p&gt;All users are granted access to their private per-user journals. However, by default, only root and users who are members of a few special groups are granted access to the system journal and the journals of other users. Members of the groups &lt;code&gt;systemd-journal&lt;/code&gt;, &lt;code&gt;adm&lt;/code&gt;, and &lt;code&gt;wheel&lt;/code&gt; can read all journal files.&lt;/p&gt;
+&lt;p&gt;The output is paged through &lt;code&gt;less&lt;/code&gt; by default, and long lines are "truncated" to screen width. The hidden part can be viewed by using the left-arrow and right-arrow keys.&lt;/p&gt;
+&lt;p&gt;Usage&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl &lt;span class="o"&gt;[&lt;/span&gt;OPTIONS...&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;MATCHES...&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Below some common operations using &lt;code&gt;journalctl&lt;/code&gt; (Not all these commands are available to non-root users but since I belong to the &lt;code&gt;wheel&lt;/code&gt; group they work just fine):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Display all collected logs in local time:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl
+&lt;/span&gt;-- Logs begin at Fri &lt;span class="m"&gt;2016&lt;/span&gt;-05-06 &lt;span class="m"&gt;23&lt;/span&gt;:00:44 -05, end at Tue &lt;span class="m"&gt;2017&lt;/span&gt;-06-27 &lt;span class="m"&gt;12&lt;/span&gt;:14:11 -05. --
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora systemd-journal&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;200&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: Runtime journal is using &lt;span class="m"&gt;8&lt;/span&gt;.0M &lt;span class="o"&gt;(&lt;/span&gt;max allowed &lt;span class="m"&gt;292&lt;/span&gt;.3M, trying to leave &lt;span class="m"&gt;438&lt;/span&gt;.5M free of &lt;span class="m"&gt;2&lt;/span&gt;.8G available → current limit &lt;span class="m"&gt;292&lt;/span&gt;.3M&lt;span class="o"&gt;)&lt;/span&gt;.nt limit &lt;span class="m"&gt;292&lt;/span&gt;.3M&lt;span class="o"&gt;)&lt;/span&gt;.
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora systemd-journal&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;200&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: Runtime journal is using &lt;span class="m"&gt;8&lt;/span&gt;.0M &lt;span class="o"&gt;(&lt;/span&gt;max allowed &lt;span class="m"&gt;292&lt;/span&gt;.3M, trying to leave &lt;span class="m"&gt;438&lt;/span&gt;.5M free of &lt;span class="m"&gt;2&lt;/span&gt;.8G available → current limit &lt;span class="m"&gt;292&lt;/span&gt;.3M&lt;span class="o"&gt;)&lt;/span&gt;.nt limit &lt;span class="m"&gt;292&lt;/span&gt;.3M&lt;span class="o"&gt;)&lt;/span&gt;.
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora kernel: microcode: CPU0 microcode updated early to revision 0x1b, &lt;span class="nv"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;2014&lt;/span&gt;-05-29
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora kernel: Initializing cgroup subsys cpuset
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora kernel: Initializing cgroup subsys cpu
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora kernel: Initializing cgroup subsys cpuacct
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora kernel: Linux version &lt;span class="m"&gt;4&lt;/span&gt;.2.3-300.fc23.x86_64 &lt;span class="o"&gt;(&lt;/span&gt;mockbuild@bkernel02.phx2.fedoraproject.org&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;gcc version &lt;span class="m"&gt;5&lt;/span&gt;.1.1 &lt;span class="m"&gt;20150618&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;Red Hat &lt;span class="m"&gt;5&lt;/span&gt;.1.1-4&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;GCC&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;#1 SMP Mon Oct 5 15:42:54 UTC 2015&lt;/span&gt;
+May &lt;span class="m"&gt;06&lt;/span&gt; &lt;span class="m"&gt;23&lt;/span&gt;:00:44 fedora kernel: Command line: &lt;span class="nv"&gt;BOOT_IMAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/vmlinuz-4.2.3-300.fc23.x86_64 &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sda4 ro rhgb quiet &lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display all collected logs in UTC time and truncate output (--utc, --no-full):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl --utc --no-full
+&lt;/span&gt;-- Logs begin at Fri &lt;span class="m"&gt;2016&lt;/span&gt;-05-06 &lt;span class="m"&gt;04&lt;/span&gt;:00:44 GMT, end at Tue &lt;span class="m"&gt;2017&lt;/span&gt;-06-27 &lt;span class="m"&gt;17&lt;/span&gt;:39:12 GMT. --
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora systemd-journal&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;200&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: Runtime journal is using &lt;span class="m"&gt;8&lt;/span&gt;.0M &lt;span class="o"&gt;(&lt;/span&gt;max allowed &lt;span class="m"&gt;292&lt;/span&gt;.3M, trying to leave &lt;span class="m"&gt;438&lt;/span&gt;.5M free of &lt;span class="m"&gt;2&lt;/span&gt;.8G availa...t &lt;span class="m"&gt;292&lt;/span&gt;.3M&lt;span class="o"&gt;)&lt;/span&gt;.
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora systemd-journal&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="m"&gt;200&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;: Runtime journal is using &lt;span class="m"&gt;8&lt;/span&gt;.0M &lt;span class="o"&gt;(&lt;/span&gt;max allowed &lt;span class="m"&gt;292&lt;/span&gt;.3M, trying to leave &lt;span class="m"&gt;438&lt;/span&gt;.5M free of &lt;span class="m"&gt;2&lt;/span&gt;.8G availa...t &lt;span class="m"&gt;292&lt;/span&gt;.3M&lt;span class="o"&gt;)&lt;/span&gt;.
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora kernel: microcode: CPU0 microcode updated early to revision 0x1b, &lt;span class="nv"&gt;date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="m"&gt;2014&lt;/span&gt;-05-29
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora kernel: Initializing cgroup subsys cpuset
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora kernel: Initializing cgroup subsys cpu
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora kernel: Initializing cgroup subsys cpuacct
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora kernel: Linux version &lt;span class="m"&gt;4&lt;/span&gt;.2.3-300.fc23.x86_64 &lt;span class="o"&gt;(&lt;/span&gt;mockbuild@bkernel02.phx2.fedoraproject.org&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;gcc version &lt;span class="m"&gt;5&lt;/span&gt;.1.1 &lt;span class="m"&gt;201506&lt;/span&gt;... UTC &lt;span class="m"&gt;2015&lt;/span&gt;
+May &lt;span class="m"&gt;07&lt;/span&gt; &lt;span class="m"&gt;04&lt;/span&gt;:00:44 fedora kernel: Command line: &lt;span class="nv"&gt;BOOT_IMAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/vmlinuz-4.2.3-300.fc23.x86_64 &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/dev/sda4 ro rhgb quiet &lt;span class="nv"&gt;LANG&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;en_US.UTF-8
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Follow live view of logs (-f/--follow):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -f
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display logs of current boot (-b/--boot=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -b
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display kernel logs from previous boot (-k/--dmesg, -b/--boot= [ID][±offset]):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -k -b -1
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;List system boots:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl --list-boots
+&lt;/span&gt;-10 38ba890bfa33438dafaf6ef973632f24 Sat &lt;span class="m"&gt;2017&lt;/span&gt;-02-18 &lt;span class="m"&gt;14&lt;/span&gt;:06:23 -05—Mon &lt;span class="m"&gt;2017&lt;/span&gt;-02-20 &lt;span class="m"&gt;08&lt;/span&gt;:59:48 -05
+ -9 bee7acaabf8c4bae84f4e722f7a1cdee Mon &lt;span class="m"&gt;2017&lt;/span&gt;-02-20 &lt;span class="m"&gt;09&lt;/span&gt;:55:05 -05—Tue &lt;span class="m"&gt;2017&lt;/span&gt;-02-21 &lt;span class="m"&gt;17&lt;/span&gt;:02:47 -05
+ -8 79e75e53d5064de39cc8daa5d9b498b0 Tue &lt;span class="m"&gt;2017&lt;/span&gt;-02-21 &lt;span class="m"&gt;17&lt;/span&gt;:03:04 -05—Mon &lt;span class="m"&gt;2017&lt;/span&gt;-03-13 &lt;span class="m"&gt;20&lt;/span&gt;:15:35 -05
+ -7 7f4b18dd2d1c41818403ebd4127ebdab Mon &lt;span class="m"&gt;2017&lt;/span&gt;-03-13 &lt;span class="m"&gt;20&lt;/span&gt;:15:35 -05—Sun &lt;span class="m"&gt;2017&lt;/span&gt;-03-19 &lt;span class="m"&gt;14&lt;/span&gt;:04:07 -05
+ -6 4fa6854475654115b6a42a6152a28ed0 Sun &lt;span class="m"&gt;2017&lt;/span&gt;-03-19 &lt;span class="m"&gt;14&lt;/span&gt;:04:16 -05—Sun &lt;span class="m"&gt;2017&lt;/span&gt;-03-19 &lt;span class="m"&gt;14&lt;/span&gt;:09:04 -05
+ -5 347eab3e0a8b466daf1fd0c2dd8f530c Sun &lt;span class="m"&gt;2017&lt;/span&gt;-03-19 &lt;span class="m"&gt;14&lt;/span&gt;:08:58 -05—Mon &lt;span class="m"&gt;2017&lt;/span&gt;-04-03 &lt;span class="m"&gt;08&lt;/span&gt;:25:33 -05
+ -4 c5fdea929ed64ae0b780a7c69e3dce23 Mon &lt;span class="m"&gt;2017&lt;/span&gt;-04-03 &lt;span class="m"&gt;08&lt;/span&gt;:25:47 -05—Sun &lt;span class="m"&gt;2017&lt;/span&gt;-04-09 &lt;span class="m"&gt;19&lt;/span&gt;:56:33 -05
+ -3 3583690c404b41318a6a2b9a06c17b74 Sun &lt;span class="m"&gt;2017&lt;/span&gt;-04-09 &lt;span class="m"&gt;20&lt;/span&gt;:10:48 -05—Mon &lt;span class="m"&gt;2017&lt;/span&gt;-05-08 &lt;span class="m"&gt;01&lt;/span&gt;:24:10 -05
+ -2 72266bc3243d41999e63926fb679b7cb Mon &lt;span class="m"&gt;2017&lt;/span&gt;-05-08 &lt;span class="m"&gt;07&lt;/span&gt;:50:10 -05—Fri &lt;span class="m"&gt;2017&lt;/span&gt;-05-26 &lt;span class="m"&gt;07&lt;/span&gt;:45:22 -05
+ -1 830be6c653a54e50ac93f45b338cf213 Fri &lt;span class="m"&gt;2017&lt;/span&gt;-05-26 &lt;span class="m"&gt;07&lt;/span&gt;:44:54 -05—Thu &lt;span class="m"&gt;2017&lt;/span&gt;-06-01 &lt;span class="m"&gt;23&lt;/span&gt;:43:42 -05
+  &lt;span class="m"&gt;0&lt;/span&gt; 29fe47d8fdf6485ab76d2eb73416787a Thu &lt;span class="m"&gt;2017&lt;/span&gt;-06-01 &lt;span class="m"&gt;23&lt;/span&gt;:43:55 -05—Tue &lt;span class="m"&gt;2017&lt;/span&gt;-06-27 &lt;span class="m"&gt;15&lt;/span&gt;:33:56 -05
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display logs filtered by priority &lt;em&gt;error&lt;/em&gt; or higher (-p/--priority=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -p err
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display all logs from the day before (-S/--since=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl --since&lt;span class="o"&gt;=&lt;/span&gt;yesterday
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Reverse order, latest entries are shown first (-S/--since=, -r/--reverse):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -S today -r
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display entries from the last twenty minutes (-S/--since=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl --since &lt;span class="s2"&gt;&amp;quot;20 min ago&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display entries between dates (-S/--since=, -U/--until=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -S &lt;span class="s2"&gt;&amp;quot;2014-11-16 23:59:59&amp;quot;&lt;/span&gt; -U &lt;span class="s2"&gt;&amp;quot;2014-11-23 23:59:59&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display entries between hours (-u/--init=, -S/--since=, -U/--until=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -u sshd --since&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;00&lt;/span&gt;:00 -U &lt;span class="m"&gt;9&lt;/span&gt;:30
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display logs generated by D-Bus executable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl /usr/bin/dbus-daemon
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display logs generated by a disk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl /dev/sda
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display a live log from httpd service (-f/--follow, -u/--unit=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl -f -u httpd
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output to STDOUT (--no-pager):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl --no-pager
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output logs with metadata (-u/--unit=, -o/--output=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl --unit&lt;span class="o"&gt;=&lt;/span&gt;sshd --output&lt;span class="o"&gt;=&lt;/span&gt;verbose
+&lt;/span&gt;-- Logs begin at Fri &lt;span class="m"&gt;2016&lt;/span&gt;-05-06 &lt;span class="m"&gt;23&lt;/span&gt;:00:44 -05, end at Tue &lt;span class="m"&gt;2017&lt;/span&gt;-06-27 &lt;span class="m"&gt;21&lt;/span&gt;:55:41 -05. --
+Tue &lt;span class="m"&gt;2016&lt;/span&gt;-09-13 &lt;span class="m"&gt;22&lt;/span&gt;:35:49.589544 -05 &lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;d661e680791b4ca58c41e2586853a08e&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4c05&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fb1bfa6113b6450a854607c6b628f1a6&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;51c6e3384e&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;53c6f6ce5cfda&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;93840&lt;/span&gt;
+    &lt;span class="nv"&gt;_BOOT_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fb1bfa6113b6450a854607c6b628f1a6
+    &lt;span class="nv"&gt;_MACHINE_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2682a64ca8a14ecd955b5c07536950ae
+    &lt;span class="nv"&gt;_HOSTNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fedora
+    &lt;span class="nv"&gt;_PID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;
+    &lt;span class="nv"&gt;_UID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;SYSLOG_FACILITY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;
+    &lt;span class="nv"&gt;_GID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+    &lt;span class="nv"&gt;_CAP_EFFECTIVE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;3fffffffff
+    &lt;span class="nv"&gt;PRIORITY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;
+    &lt;span class="nv"&gt;CODE_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;src/core/unit.c
+    &lt;span class="nv"&gt;CODE_LINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1413&lt;/span&gt;
+    &lt;span class="nv"&gt;CODE_FUNCTION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;unit_status_log_starting_stopping_reloading
+    &lt;span class="nv"&gt;SYSLOG_IDENTIFIER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;systemd
+    &lt;span class="nv"&gt;MESSAGE_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;7d4958e842da4a758f6c1cdc7b36dcc5
+    &lt;span class="nv"&gt;_TRANSPORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;journal
+    &lt;span class="nv"&gt;_COMM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;systemd
+    &lt;span class="nv"&gt;_EXE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/lib/systemd/systemd
+    &lt;span class="nv"&gt;_CMDLINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/lib/systemd/systemd --switched-root --system --deserialize &lt;span class="m"&gt;21&lt;/span&gt;
+    &lt;span class="nv"&gt;_SYSTEMD_CGROUP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/
+    &lt;span class="nv"&gt;_SYSTEMD_SLICE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;-.slice
+    &lt;span class="nv"&gt;UNIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;sshd.service
+    &lt;span class="nv"&gt;MESSAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Starting OpenSSH server daemon...
+    &lt;span class="nv"&gt;_SOURCE_REALTIME_TIMESTAMP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1473824149589544&lt;/span&gt;
+    ...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output as a binary stream suitable for backups and network transfers (-u/--unit=, -o/--output=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl -u sshd -o &lt;span class="nb"&gt;export&lt;/span&gt;
+&lt;/span&gt;...
+&lt;span class="nv"&gt;__CURSOR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;s&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;d661e680791b4ca58c41e2586853a08e&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;4c06&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fb1bfa6113b6450a854607c6b628f1a6&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;m&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;51c6e4069f&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;t&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;53c6f6ce69e2b&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;6270e5cdc028239f
+&lt;span class="nv"&gt;__REALTIME_TIMESTAMP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1473824149642795&lt;/span&gt;
+&lt;span class="nv"&gt;__MONOTONIC_TIMESTAMP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;351229183647&lt;/span&gt;
+&lt;span class="nv"&gt;_BOOT_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fb1bfa6113b6450a854607c6b628f1a6
+&lt;span class="nv"&gt;_MACHINE_ID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;2682a64ca8a14ecd955b5c07536950ae
+&lt;span class="nv"&gt;_HOSTNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;fedora
+&lt;span class="nv"&gt;_UID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;_TRANSPORT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;syslog
+&lt;span class="nv"&gt;_GID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;
+&lt;span class="nv"&gt;_CAP_EFFECTIVE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;3fffffffff
+&lt;span class="nv"&gt;_SYSTEMD_SLICE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;system.slice
+&lt;span class="nv"&gt;PRIORITY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;
+&lt;span class="nv"&gt;SYSLOG_FACILITY&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;
+&lt;span class="nv"&gt;SYSLOG_IDENTIFIER&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;sshd
+&lt;span class="nv"&gt;SYSLOG_PID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;6565&lt;/span&gt;
+&lt;span class="nv"&gt;MESSAGE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;Server listening on &lt;span class="m"&gt;0&lt;/span&gt;.0.0.0 port &lt;span class="m"&gt;22&lt;/span&gt;.
+&lt;span class="nv"&gt;_PID&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;6565&lt;/span&gt;
+&lt;span class="nv"&gt;_COMM&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;sshd
+&lt;span class="nv"&gt;_EXE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/sbin/sshd
+&lt;span class="nv"&gt;_CMDLINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/sbin/sshd
+&lt;span class="nv"&gt;_SYSTEMD_CGROUP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/system.slice/sshd.service
+&lt;span class="nv"&gt;_SYSTEMD_UNIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;sshd.service
+&lt;span class="nv"&gt;_SOURCE_REALTIME_TIMESTAMP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;1473824149642517&lt;/span&gt;
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output entries as one per line JSON data suitable for web (-u/--unit=, -o/--output=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl --unit sshd -o json
+&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;__CURSOR&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;s=d661e680791b4ca58c41e2586853a08e;i=4c05;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e3384e;t=53c6f6ce5cfda;x=938403ae0d5dcef3&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;__REALTIME_TIMESTAMP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1473824149589978&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;__MONOTONIC_TIMESTAMP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;351229130830&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_BOOT_ID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;fb1bfa6113b6450a854607c6b628f1a6&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_MACHINE_ID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;2682a64ca8a14ecd955b5c07536950ae&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_HOSTNAME&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;fedora&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_PID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_UID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;SYSLOG_FACILITY&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_GID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_CAP_EFFECTIVE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;3fffffffff&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;PRIORITY&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;6&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;CODE_FILE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;src/core/unit.c&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;CODE_LINE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1413&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;CODE_FUNCTION&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;unit_status_log_starting_stopping_reloading&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;SYSLOG_IDENTIFIER&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;systemd&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;MESSAGE_ID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;7d4958e842da4a758f6c1cdc7b36dcc5&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_TRANSPORT&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;journal&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_COMM&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;systemd&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_EXE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;/usr/lib/systemd/systemd&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_CMDLINE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;/usr/lib/systemd/systemd --switched-root --system --deserialize 21&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_SYSTEMD_CGROUP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_SYSTEMD_SLICE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;-.slice&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;UNIT&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;sshd.service&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;MESSAGE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;Starting OpenSSH server daemon...&amp;quot;&lt;/span&gt;, &lt;span class="s2"&gt;&amp;quot;_SOURCE_REALTIME_TIMESTAMP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1473824149589544&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt;
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output entries as human-readable JSON data suitable for web (-u/--unit=, -o/--output=):&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl --unit sshd -o json-pretty
+&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;
+        &lt;span class="s2"&gt;&amp;quot;__CURSOR&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;s=d661e680791b4ca58c41e2586853a08e;i=4c05;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e3384e;t=53c6f6ce5cfda;x=938403ae0d5dcef3&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;__REALTIME_TIMESTAMP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1473824149589978&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;__MONOTONIC_TIMESTAMP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;351229130830&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_BOOT_ID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;fb1bfa6113b6450a854607c6b628f1a6&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_MACHINE_ID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;2682a64ca8a14ecd955b5c07536950ae&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_HOSTNAME&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;fedora&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_PID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_UID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;SYSLOG_FACILITY&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_GID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;0&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_CAP_EFFECTIVE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;3fffffffff&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;PRIORITY&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;6&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;CODE_FILE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;src/core/unit.c&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;CODE_LINE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1413&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;CODE_FUNCTION&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;unit_status_log_starting_stopping_reloading&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;SYSLOG_IDENTIFIER&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;systemd&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;MESSAGE_ID&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;7d4958e842da4a758f6c1cdc7b36dcc5&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_TRANSPORT&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;journal&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_COMM&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;systemd&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_EXE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;/usr/lib/systemd/systemd&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_CMDLINE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;/usr/lib/systemd/systemd --switched-root --system --deserialize 21&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_SYSTEMD_CGROUP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_SYSTEMD_SLICE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;-.slice&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;UNIT&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;sshd.service&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;MESSAGE&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;Starting OpenSSH server daemon...&amp;quot;&lt;/span&gt;,
+        &lt;span class="s2"&gt;&amp;quot;_SOURCE_REALTIME_TIMESTAMP&amp;quot;&lt;/span&gt; : &lt;span class="s2"&gt;&amp;quot;1473824149589544&amp;quot;&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display entries that matches the expression:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl &lt;span class="nv"&gt;_SYSTEMD_UNIT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;firewalld.service
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Find out possible values for field:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl &lt;span class="nv"&gt;_SELINUX_CONTEXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&amp;lt;TAB&amp;gt;&amp;lt;TAB&amp;gt;
+&lt;/span&gt;kernel
+system_u:system_r:alsa_t:s0
+system_u:system_r:auditctl_t:s0
+system_u:system_r:auditd_t:s0
+system_u:system_r:crond_t:s0-s0:c0.c1023
+system_u:system_r:dhcpc_t:s0
+system_u:system_r:firewalld_t:s0
+system_u:system_r:policykit_t:s0
+system_u:system_r:rpm_t:s0
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Display logs from selinux label PolicyKit:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl &lt;span class="nv"&gt;_SELINUX_CONTEXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;system_u:system_r:policykit_t:s0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Current disk usage of the journal:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="hll"&gt;$ journalctl --disk-usage
+&lt;/span&gt;Archived and active journals take up &lt;span class="m"&gt;2&lt;/span&gt;.8G on disk.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Verify internal consistency of journal files:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;journalctl --verify
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For further information about journalctl, read &lt;a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/s1-Using_the_Journal.html"&gt;Red Hat Documentation: Using the Journal&lt;/a&gt;, &lt;a href="http://0pointer.de/blog/projects/journalctl.html"&gt;0pointer.de post: journalctl&lt;/a&gt;, &lt;a href="https://www.freedesktop.org/software/systemd/man/journalctl.html"&gt;man page: journalctl&lt;/a&gt;&lt;/p&gt;</content><category term="linux"></category><category term="systemd"></category><category term="journalctl"></category></entry><entry><title>ExifTool</title><link href="/exiftool/" rel="alternate"></link><published>2017-06-21T10:38:00-05:00</published><updated>2017-06-21T10:38:00-05:00</updated><author><name>Cesmus</name></author><id>tag:None,2017-06-21:/exiftool/</id><summary type="html">&lt;div class="quote"&gt;
+&lt;p&gt;&lt;strong&gt;Hack&lt;/strong&gt; meta information&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="http://owl.phy.queensu.ca/~phil/exiftool/"&gt;http://owl.phy.queensu.ca/~phil/exiftool/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;ExifTool&lt;/strong&gt; is a powerful Perl library (&lt;code&gt;Image::ExifTool&lt;/code&gt;) that comes with a command-line interface (&lt;code&gt;exiftool&lt;/code&gt;) that reads, writes and edits meta information in image, audio, video, PDF and many others files. This makes &lt;strong&gt;ExifTool&lt;/strong&gt; a great tool to use …&lt;/p&gt;</summary><content type="html">&lt;div class="quote"&gt;
+&lt;p&gt;&lt;strong&gt;Hack&lt;/strong&gt; meta information&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href="http://owl.phy.queensu.ca/~phil/exiftool/"&gt;http://owl.phy.queensu.ca/~phil/exiftool/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;ExifTool&lt;/strong&gt; is a powerful Perl library (&lt;code&gt;Image::ExifTool&lt;/code&gt;) that comes with a command-line interface (&lt;code&gt;exiftool&lt;/code&gt;) that reads, writes and edits meta information in image, audio, video, PDF and many others files. This makes &lt;strong&gt;ExifTool&lt;/strong&gt; a great tool to use before exposing undesired information online or simply to extract valuable information from media files.&lt;/p&gt;
+&lt;p&gt;Below you will find some common uses of ExifTool for both reading and manipulating meta information in media files.&lt;/p&gt;
+&lt;p&gt;More Internet resources about ExifTool: &lt;a href="http://owl.phy.queensu.ca/~phil/exiftool/"&gt;Website&lt;/a&gt; | &lt;a href="https://en.wikipedia.org/wiki/ExifTool"&gt;Wikipedia&lt;/a&gt; | &lt;a href="http://web.mit.edu/Graphics/src/Image-ExifTool-6.99/html/ExifTool.html"&gt;MIT&lt;/a&gt; &lt;/p&gt;
+&lt;h3 id="tags-groups"&gt;Tags &amp;amp; Groups&lt;/h3&gt;
+&lt;p&gt;Meta information is stored in tags and they are associated in groups. Here a list of some of the most common groups.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;File: system information.&lt;/li&gt;
+&lt;li&gt;EXIF: (Exchangeable image file format) &lt;a href="http://www.jeita.or.jp/english/"&gt;JEITA&lt;/a&gt; standard&lt;/li&gt;
+&lt;li&gt;MakerNotes: additional meta information from maker&lt;/li&gt;
+&lt;li&gt;IPTC IIM: (IPTC Information Interchange Model) &lt;a href="https://iptc.org/"&gt;International Press Telecommunications Council&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;XMP: Adobe's XMP standard &lt;a href="https://www.adobe.com/products/xmp.html"&gt;Adobe's XMP&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="quick-examples"&gt;Quick Examples&lt;/h3&gt;
+&lt;p&gt;Some common actions with ExifTool:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Extract meta information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Extract all meta information sorted by group (including duplicates and unknown tags)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -a -u -g1 file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Extract common information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -common file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write meta information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2017:06:19 23:17:00&amp;quot;&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write meta information to multiple files:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2017:06:19 23:17:00&amp;quot;&lt;/span&gt; file1.jpg file2.jpg file3.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write meta information to all files in directory:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;2017:06:19 23:17:00&amp;quot;&lt;/span&gt; images/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Write multiple tags:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -createdate+&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt; -modifydate+&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Replaces existing comments:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -comment&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Print selected tags:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -ImageSize -ExposureTime file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output meta informaton in tab columns:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -T -createdate -aperture -shutterspeed -iso file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output meta information in html:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -htmldump file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Output meta information as json:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -json file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Remove all meta information:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -all&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Delete all Photoshop metadata:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -Photoshop:All&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Remove all gps tags:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;exiftool -gps:all&lt;span class="o"&gt;=&lt;/span&gt; file.jpg
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="tips"&gt;Tips&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do NOT delete meta information in RAW images, sometimes RAW formats contain information in the makernotes that is necessary for converting the image.&lt;/p&gt;
+&lt;p&gt;Changes to PDF files by ExifTool are reversible (by deleting the update with "-PDF-update:all=") because the original information is never actually deleted from the file.  So ExifTool alone may not be used to securely edit metadata in PDF files&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="exiftool"></category><category term="web"></category><category term="metadata"></category></entry><entry><title>Markdown</title><link href="/markdown/" rel="alternate"></link><published>2017-06-19T23:58:00-05:00</published><updated>2017-06-19T23:58:00-05:00</updated><author><name>Cesmus</name></author><id>tag:None,2017-06-19:/markdown/</id><summary type="html">&lt;h1 id="markdown"&gt;Markdown&lt;/h1&gt;
+&lt;table class="infobox u-full-width"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Filename extensions&lt;/th&gt;&lt;td&gt;.md .markdown .mdown .mkdn&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;MIME type&lt;/th&gt;&lt;td&gt;text/markdown&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Developed by&lt;/th&gt;&lt;td&gt;John Gruber&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Year launched&lt;/th&gt;&lt;td&gt;2004&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;RFCs&lt;/th&gt;&lt;td&gt;&lt;a href="https://tools.ietf.org/html/rfc7763"&gt;RFC 7763&lt;/a&gt; &lt;a href="https://tools.ietf.org/html/rfc7764"&gt;RFC 7764&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Website&lt;/th&gt;&lt;td&gt;http://daringfireball.net/projects/markdown&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class="quote"&gt;
+  text-to-HTML conversion tool for web writers
+&lt;/div&gt;
+
+&lt;p&gt;Markdown is two things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;a plain text formatting syntax.&lt;/li&gt;
+&lt;li&gt;a software converter that converts the …&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;h1 id="markdown"&gt;Markdown&lt;/h1&gt;
+&lt;table class="infobox u-full-width"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Filename extensions&lt;/th&gt;&lt;td&gt;.md .markdown .mdown .mkdn&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;MIME type&lt;/th&gt;&lt;td&gt;text/markdown&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Developed by&lt;/th&gt;&lt;td&gt;John Gruber&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Year launched&lt;/th&gt;&lt;td&gt;2004&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;RFCs&lt;/th&gt;&lt;td&gt;&lt;a href="https://tools.ietf.org/html/rfc7763"&gt;RFC 7763&lt;/a&gt; &lt;a href="https://tools.ietf.org/html/rfc7764"&gt;RFC 7764&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Website&lt;/th&gt;&lt;td&gt;http://daringfireball.net/projects/markdown&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class="quote"&gt;
+  text-to-HTML conversion tool for web writers
+&lt;/div&gt;
+
+&lt;p&gt;Markdown is two things:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;a plain text formatting syntax.&lt;/li&gt;
+&lt;li&gt;a software converter that converts the plain text to valid HTML.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Markdown specifically is a family of syntaxes that are based on the original work of John Gruber with substantial contributions from Aaron Swartz. Since its release, a number of web or web-facing applications have incorporated Markdown into their text-entry systems, frequently with custom extensions.&lt;/p&gt;
+&lt;p&gt;Due to the complexity and security pitfalls of formal markup languages (e.g., HTML5) and proprietary binary formats (e.g., word-processing software), yet unwilling to be confined to the restrictions of plain text, many users have turned to Markdown for document processing.  Whole toolchains now exist to support Markdown for online and offline projects.&lt;/p&gt;
+&lt;p&gt;The original implementation of Markdown is written in a Perl script called &lt;code&gt;Markdown.pl&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Despite Markdown being the &lt;strong&gt;most commonly used lightweight markup language on the internet&lt;/strong&gt;, it does not have a specification, lacks common features found in other markup languages and does not have a clear translation for most HTML tags, and adding HTML code in a Markdown document conflicts with the basic purpose of the language. That being said, Markdown simplicity rocks.&lt;/p&gt;
+&lt;h2 id="lack-of-standard"&gt;Lack of standard&lt;/h2&gt;
+&lt;p&gt;There is no defined Markdown standard, John Gruber’s canonical description of Markdown’s syntax does not specify the syntax unambiguously. This has led to fragmentation as different vendors wrote their own variants of the language.&lt;/p&gt;
+&lt;p&gt;As Markdown became more popular, more and more sites started to implement their own Markdown. This has make it hard to port Markdown between sites and versions.&lt;/p&gt;
+&lt;p&gt;In the last few years, &lt;strong&gt;CommonMark&lt;/strong&gt; was developed as a standardized effort on Markdown and there are plans to announce a finalized 1.0 spec in 2017.&lt;/p&gt;
+&lt;h2 id="lack-of-extensibility"&gt;Lack of extensibility&lt;/h2&gt;
+&lt;p&gt;The lack of some features and bugs found in the original Markdown code saw the birth of more &lt;em&gt;Markdown extensions&lt;/em&gt; variants such as &lt;strong&gt;Markdown Extra&lt;/strong&gt; (PHP, Python, Ruby), &lt;strong&gt;MultiMarkdown&lt;/strong&gt; (Perl) and &lt;strong&gt;Pandoc Markdown&lt;/strong&gt; (Haskell).&lt;/p&gt;
+&lt;h2 id="commonmark"&gt;CommonMark&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://commonmark.org"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;CommonMark propose a &lt;strong&gt;standard, unambiguous syntax specification for Markdown&lt;/strong&gt;, along with a &lt;strong&gt;suite of comprehensive tests&lt;/strong&gt; to validate Markdown implementations against the specification.&lt;/p&gt;
+&lt;p&gt;For further information about CommonMark, read more&lt;/p&gt;
+&lt;h2 id="quick-examples"&gt;Quick Examples&lt;/h2&gt;
+&lt;h4 id="md_syntaxmd"&gt;&lt;code&gt;md_syntax.md&lt;/code&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# h1
+## h2
+###### h6
+
+Paragraphs are separated
+by a blank line.
+
+Two spaces at the end of a line leave a  
+line break.
+
+Text attributes _italic_, *italic*, __bold__, **bold**, `monospace`.
+
+Horizontal rule:
+---
+
+Bullet list:
+  - apples
+  - oranges
+  - pears
+
+Numbered list:
+  1. apples
+  2. oranges
+  3. pears
+
+A [link](http://example.com).
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="readmemd"&gt;&lt;code&gt;README.md&lt;/code&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;## Synopsis
+
+At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+
+## Code Example
+
+Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+
+## Motivation
+
+A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+
+## Installation
+
+Provide code examples and explanations of how to get the project.
+
+## API Reference
+
+Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+
+## Tests
+
+Describe and show how to run the tests with code examples.
+
+## Contributors
+
+Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+
+## License
+
+A short snippet describing the license (MIT, Apache, etc.)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Some good readings about READMEs:
+- &lt;a href="https://medium.com/@NSomar/readme-md-history-and-components-a365aff07f10"&gt;Medium.com: README.md History and Components&lt;/a&gt;
+- &lt;a href="https://github.com/repat/README-template"&gt;repat README-templates&lt;/a&gt;
+- &lt;a href="https://en.wikipedia.org/wiki/README"&gt;Wikipedia's README article&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="contentmy_first_blogmd"&gt;&lt;code&gt;content/my_first_blog.md&lt;/code&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;---
+Title: Blog Title
+Slug: blog-title
+Date: 2017-06-22 18:05
+Category: blog
+Tags: blog, foo, bar
+Authors: Foo Bar
+Summary: A test blog entry
+---
+
+blog entry.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="aboutmd"&gt;&lt;code&gt;about.md&lt;/code&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;---
+Title: About
+---
+
+about page
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2 id="dingus"&gt;Dingus&lt;/h2&gt;
+&lt;p&gt;Try your Markdown online, they come with a quick Markdown cheatsheet&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://daringfireball.net/projects/markdown/dingus"&gt;Daring Fireball: Markdown dingus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://michelf.ca/projects/php-markdown/dingus/"&gt;PHP Markdown dingus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://fountain.io/dingus"&gt;Fountain.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://spec.commonmark.org/dingus/"&gt;CommonMark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.symfony-project.org/plugins/markdown_dingus"&gt;Symfony Project&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="markdown-extra"&gt;Markdown Extra&lt;/h2&gt;
+&lt;p&gt;Markdown Extra is an extension with some features currently not available with the plain Markdown syntax, and was initially implemented in PHP Markdown.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://michelf.ca/projects/php-markdown/extra/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="php-markdown-php"&gt;PHP Markdown (PHP)&lt;/h4&gt;
+&lt;p&gt;PHP Markdown implements plain Markdown syntax and PHP Markdown Extra implements Markdown Extra.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://michelf.ca/projects/php-markdown/"&gt;Website&lt;/a&gt; | &lt;a href="https://github.com/michelf/php-markdown"&gt;GiHub&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="python-markdown"&gt;Python Markdown&lt;/h4&gt;
+&lt;p&gt;Python implementation of Markdown, contains:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python Markdown (original Markdown syntax)&lt;/li&gt;
+&lt;li&gt;Python Markdown extensions (Markdown Extra + more extensions (official and third party) + Extensions API)&lt;/li&gt;
+&lt;li&gt;markdown_py (command-line interface)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://pythonhosted.org/Markdown/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="multimarkdown"&gt;MultiMarkdown&lt;/h4&gt;
+&lt;p&gt;MultiMarkdown (MMD) is a superset of the original. It adds multiple syntax features (tables, footnotes, citations, etc.) and can output to various formats.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://fletcherpenney.net/multimarkdown/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="markdown-flavors"&gt;Markdown Flavors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/jgm/CommonMark/wiki/Markdown-Flavors"&gt;List of Markdown Flavors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/markdown/markdown.github.com/wiki/Implementations"&gt;List of Markdown Implementations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jgm/CommonMark/wiki/List-of-CommonMark-Implementations"&gt;List of CommonMark implementations&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Below some of the most popular implementations of Markdown:&lt;/p&gt;
+&lt;h4 id="pandoc-haskell"&gt;Pandoc (Haskell)&lt;/h4&gt;
+&lt;p&gt;Pandoc is an open source software document converter. It can convert files from one markup to another. It is the Swiss Army knife for document conversion.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://pandoc.org/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="github-flavored-markdown"&gt;GitHub Flavored Markdown&lt;/h4&gt;
+&lt;p&gt;GitHub Flavored Markdown (GFM) is the dialect of Markdown currently supported for user content at GitHub. GFM is a strict superset of CommonMark, all features not specified in the original CommonMark Spec are known as &lt;strong&gt;extensions&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.github.com/gfm/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="fountainio"&gt;Fountain.io&lt;/h4&gt;
+&lt;p&gt;Fountain is a simple markup syntax for writing, editing, and sharing screenplays in plain, human-readable text.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://fountain.io"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="kramdown-ruby"&gt;kramdown (Ruby)&lt;/h4&gt;
+&lt;p&gt;kramdown is a Ruby superset implementation of Markdown written by Thomas Leitner.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://kramdown.gettalong.org/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="discount-c"&gt;Discount (C)&lt;/h4&gt;
+&lt;p&gt;Pure C implementation&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.pell.portland.or.us/%7Eorc/Code/discount/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="marked-javascript"&gt;marked (JavaScript)&lt;/h4&gt;
+&lt;p&gt;A full-featured markdown parser and compiler, written in JavaScript. Built for speed.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/chjj/marked"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="markdown-alternatives"&gt;Markdown Alternatives&lt;/h2&gt;
+&lt;h4 id="restructuredtext"&gt;reStructuredText&lt;/h4&gt;
+&lt;p&gt;reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax and parser system. It is useful for in-line program documentation (such as Python docstrings), for quickly creating simple web pages, and for standalone documents.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://docutils.sourceforge.net/rst.html"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="textile"&gt;Textile&lt;/h4&gt;
+&lt;p&gt;Textile is a simple text format that can be converted to HTML, eliminating the need to use HTML directly to create documents, blogs, or web pages. Textile gives you readable text while you’re writing and beautiful text for your readers.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.promptworks.com/textile"&gt;Website&lt;/a&gt; | &lt;a href="https://github.com/textile"&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="asciidoc"&gt;AsciiDoc&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;AsciiDoc&lt;/strong&gt; is a text document format for writing notes, documentation, articles, books, ebooks, slideshows, web pages, man pages and blogs. AsciiDoc files can be translated to many formats including HTML, PDF, EPUB, man page.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://asciidoc.org/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id="creole"&gt;Creole&lt;/h4&gt;
+&lt;p&gt;Creole is a lightweight markup language, aimed at being a common markup language for wikis, enabling and simplifying the transfer of content between different wiki engines.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://wikicreole.org/"&gt;Website&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;These wiki engines have implemented full or partial support for Creole such as &lt;a href="http://www.oddmuse.org/"&gt;OddMuse&lt;/a&gt;, &lt;a href="http://moinmo.in/"&gt;MoinMoin&lt;/a&gt;, &lt;a href="https://www.dokuwiki.org"&gt;DokuWiki&lt;/a&gt;, among others. &lt;a href="https://mediawiki.org/"&gt;MediaWiki&lt;/a&gt; does not support Creole.  &lt;/p&gt;
+&lt;h2 id="further-reading"&gt;Further reading&lt;/h2&gt;
+&lt;p&gt;For further information about Markdown syntax, check the &lt;a href="https://daringfireball.net/projects/markdown/syntax"&gt;Daring Fireball: Markdown syntax&lt;/a&gt;, &lt;a href="https://michelf.ca/projects/php-markdown/concepts/"&gt;PHP Markdown Concepts page&lt;/a&gt;, &lt;a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"&gt;Markdown-here Cheatsheet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For further information about Markdown, read &lt;a href="https://en.wikipedia.org/wiki/Markdown"&gt;Wikipedia&lt;/a&gt;.&lt;/p&gt;</content><category term="markdown"></category><category term="markup"></category><category term="web"></category><category term="html"></category></entry></feed>

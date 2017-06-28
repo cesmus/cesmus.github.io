@@ -1,0 +1,222 @@
+.navbar {
+    border-top-width: 0;
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 2px solid #361;
+    border-top: 2px solid #361;
+    border-right: 2px solid #361;
+    display: block;
+    /*height: 6.5rem;*/
+    width: 100%;
+    z-index: 99;
+}
+.navbar > .container {
+    width: 100%;
+}
+.navbar-list {
+    list-style: outside none none;
+    margin-bottom: 0;
+}
+.navbar-item {
+    float: left;
+    margin-bottom: 0;
+    position: relative;
+}
+.navbar-icon {
+    float: right;
+    margin-bottom: 0;
+    position: relative;
+    line-height: 8.5rem;
+}
+.navbar-link {
+    color: #222;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    /*line-height: 6.5rem;*/
+    margin: 5px 1px;
+    /*margin-right: 25px;*/
+    text-decoration: none;
+    text-transform: lowercase;
+}
+.button {
+   border-radius: 8px;
+}
+.button.button-primary {
+   border-radius: 100px;
+   background-color: #361;
+   border-color: #361;
+   text-transform: lowercase;
+}
+.button.button-primary:hover, .button.button-primary:active {
+   background-color: #331;
+   border-color: #361;
+   text-transform: uppercase;
+}
+.container {
+    max-width: 800px;
+}
+.content-subhead {
+    color: #1c1f24;
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+.content-subhead h5 {
+    display: inline-block;
+    text-transform: lowercase;
+    letter-spacing: 1em;
+    font-weight: 700;
+    font-size: 0.8em;
+    /*border-bottom: 2px solid #1c1f24;*/
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.content-subhead h3 {
+    display: inline-block;
+    background-color: #361;
+    color: #fff;
+    letter-spacing: .1rem;
+    font-size: 1.5rem;
+    border-radius: 100px;
+    padding: 0 30px;
+    margin-top: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    height: 38px;
+    line-height: 38px;
+}
+.post-content {
+    color: #3a4145;
+    font-family: 'Overpass',serif;
+    font-feature-settings: "kern";
+    font-size: 1.8rem;
+    letter-spacing: 0.01rem;
+    line-height: 1.75em;
+    margin: 1.75em 0 1.75em;
+}
+.post-category {
+    /*border: 2px solid #361;*/
+    /*border-radius: 2px;*/
+    /*color: #361;*/
+    margin-left: 8px;
+    /*padding: 2px 8px;*/
+    /*display: inline-block;*/
+    white-space: nowrap;
+}
+.header {
+    text-align: center;
+}
+.logo {
+    border-radius: 100px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    height: 180px;
+    line-height: 0;
+    margin: 20px auto 0px;
+    width: 180px;
+}
+.logo:hover {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+.logo:active {
+    -webkit-filter: invert(80%) saturate(8);
+    filter: invert(80%) saturate(8);
+}
+.post a {
+    text-decoration: none;
+}
+a {
+    color: #4a4a4a;
+    transition: color 0.5s ease 0s;
+}
+
+.post::after {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #e7eef2;
+    border-radius: 100%;
+    bottom: -5px;
+    box-shadow: 0 0 0 5px #fff;
+    content: "";
+    display: block;
+    height: 7px;
+    left: 50%;
+    margin-left: -5px;
+    position: absolute;
+    width: 7px;
+}
+.post {
+    border-bottom: 1px solid #ebf2f6;
+    /*padding-top: 2rem;*/
+    /*padding-bottom: 2rem;*/
+    position: relative;
+}
+.post-meta {
+    display: block;
+    color: #1c1f24;
+    font-size: 1.5rem;
+    line-height: 2.2rem;
+    margin: -1.5rem 0 0;
+}
+.pagination {
+    color: #210;
+    font-family: 'Bitter',sans-serif;
+    font-size: 1.4rem;
+    margin: 3rem;
+    position: relative;
+    text-align: center;
+}
+.pagination a {
+    text-decoration: none;
+}
+.footer {
+    color: #1c1f24;
+    font-family: 'Bitter',sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.75em;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: block;
+    /*float: right;*/
+    text-align: center;
+}
+footer {
+    /*background-color: #135;*/
+    background-color: #fff;
+}
+pre {
+    background: none repeat scroll 0 0 #2d2d2d;
+    /*border: 1px solid #e3edf3;*/
+    border-left: 0.8rem solid #ed550f;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-family: 'Overpass Mono',monospace,sans-serif;
+    font-size: 0.9em;
+    margin: 0 0 1.75em;
+    overflow: auto;
+    padding: 10px;
+    white-space: pre;
+    width: 100%;
+}
+img {
+    max-width: 100%;
+}
+
+code {
+  color: #c01919;
+}
+
+a:hover {
+    color: #d7f57d;
+}
+
+/**/
+.infobox {
+    list-style: outside none none;
+}
+
+.quote {
+    font-size: 3rem;
+    color: #135;
+    margin-bottom: 2.7rem;
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+}

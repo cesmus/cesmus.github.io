@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>cesmus&middot;&middot;  systemd: journalctl
+</title>
+    <meta name="description" content="Cesmus, ">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Feeds -->
+    <link rel="alternate" href="/feeds/all.atom.xml" type="application/atom+xml" title="Cesmus Atom Feed" />
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Overpass|Overpass+Mono" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/theme/css/custom.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".container").fitVids();
+        });
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/theme/images/favicon.ico">
+
+</head>
+<body>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+        <section class="header">
+          <img src="/theme/images/115040.jpg" class="logo">
+        </section>
+    </div>
+    <div class="container">
+        <nav class="navbar">
+            <div class="container">
+                <ul class="navbar-list u-full-width">
+                    <!-- <li class="navbar-item"><a href="//" class="navbar-link">Home</a></li> -->
+                    <li class="navbar-item"><a href="/" class="navbar-link button">Home</a></li>
+                    <!-- <li class="navbar-item"><a href="//js/" class="navbar-link">js</a></li> -->
+                    <li class="navbar-item"><a href="/js/" class="navbar-link button">js</a></li>
+                    <!-- <li class="navbar-item"><a href="//css/" class="navbar-link">css</a></li> -->
+                    <li class="navbar-item"><a href="/css/" class="navbar-link button">css</a></li>
+                    <!-- <li class="navbar-item"><a href="//about/" class="navbar-link">about</a></li> -->
+                    <li class="navbar-item"><a href="/about/" class="navbar-link button">about</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <section class="post">
+            <header class="post-header">
+                <h3>systemd: journalctl</h3>
+                <p class="post-meta">
+                        <a class="post-category button button-primary" href="/tag/linux/">linux</a>
+                        <a class="post-category button button-primary" href="/tag/systemd/">systemd</a>
+                        <a class="post-category button button-primary" href="/tag/journalctl/">journalctl</a>
+                </p>
+            </header>
+        </section>
+        <section class="post-content">
+            <p>One of the greatest features of <code>systemd</code> is its system logging, the journal.</p>
+<h2 id="the-journal">The Journal</h2>
+<p>The journal, according to the developers, is a logging scheme that provides structured, indexed and reliable logging on systemd systems, while providing a certain degree of compatibility with classic syslog implementations.</p>
+<p>In more detail, the journal is a component of systemd, that captures Syslog messages, Kernel log messages, initial RAM disk and early boot messages as well as messages written to STDOUT/STDERR of all services, indexes them and stores them in binary files called <em>journals</em>.</p>
+<p>The journal is implemented with the <code>journald</code> daemon and <code>journalctl</code> is the tool to query the journal.</p>
+<h2 id="journalctl">journalctl</h2>
+<p><code>journalctl</code> is used to query the contents of the <code>systemd</code> journal.</p>
+<p>All users are granted access to their private per-user journals. However, by default, only root and users who are members of a few special groups are granted access to the system journal and the journals of other users. Members of the groups <code>systemd-journal</code>, <code>adm</code>, and <code>wheel</code> can read all journal files.</p>
+<p>The output is paged through <code>less</code> by default, and long lines are "truncated" to screen width. The hidden part can be viewed by using the left-arrow and right-arrow keys.</p>
+<p>Usage</p>
+<div class="highlight"><pre><span></span>journalctl <span class="o">[</span>OPTIONS...<span class="o">]</span> <span class="o">[</span>MATCHES...<span class="o">]</span>
+</pre></div>
+
+
+<p>Below some common operations using <code>journalctl</code> (Not all these commands are available to non-root users but since I belong to the <code>wheel</code> group they work just fine):</p>
+<ul>
+<li>Display all collected logs in local time:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl
+</span>-- Logs begin at Fri <span class="m">2016</span>-05-06 <span class="m">23</span>:00:44 -05, end at Tue <span class="m">2017</span>-06-27 <span class="m">12</span>:14:11 -05. --
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora systemd-journal<span class="o">[</span><span class="m">200</span><span class="o">]</span>: Runtime journal is using <span class="m">8</span>.0M <span class="o">(</span>max allowed <span class="m">292</span>.3M, trying to leave <span class="m">438</span>.5M free of <span class="m">2</span>.8G available → current limit <span class="m">292</span>.3M<span class="o">)</span>.nt limit <span class="m">292</span>.3M<span class="o">)</span>.
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora systemd-journal<span class="o">[</span><span class="m">200</span><span class="o">]</span>: Runtime journal is using <span class="m">8</span>.0M <span class="o">(</span>max allowed <span class="m">292</span>.3M, trying to leave <span class="m">438</span>.5M free of <span class="m">2</span>.8G available → current limit <span class="m">292</span>.3M<span class="o">)</span>.nt limit <span class="m">292</span>.3M<span class="o">)</span>.
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora kernel: microcode: CPU0 microcode updated early to revision 0x1b, <span class="nv">date</span> <span class="o">=</span> <span class="m">2014</span>-05-29
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora kernel: Initializing cgroup subsys cpuset
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora kernel: Initializing cgroup subsys cpu
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora kernel: Initializing cgroup subsys cpuacct
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora kernel: Linux version <span class="m">4</span>.2.3-300.fc23.x86_64 <span class="o">(</span>mockbuild@bkernel02.phx2.fedoraproject.org<span class="o">)</span> <span class="o">(</span>gcc version <span class="m">5</span>.1.1 <span class="m">20150618</span> <span class="o">(</span>Red Hat <span class="m">5</span>.1.1-4<span class="o">)</span> <span class="o">(</span>GCC<span class="o">)</span> <span class="o">)</span> <span class="c1">#1 SMP Mon Oct 5 15:42:54 UTC 2015</span>
+May <span class="m">06</span> <span class="m">23</span>:00:44 fedora kernel: Command line: <span class="nv">BOOT_IMAGE</span><span class="o">=</span>/vmlinuz-4.2.3-300.fc23.x86_64 <span class="nv">root</span><span class="o">=</span>/dev/sda4 ro rhgb quiet <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+...
+</pre></div>
+
+
+<ul>
+<li>Display all collected logs in UTC time and truncate output (--utc, --no-full):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl --utc --no-full
+</span>-- Logs begin at Fri <span class="m">2016</span>-05-06 <span class="m">04</span>:00:44 GMT, end at Tue <span class="m">2017</span>-06-27 <span class="m">17</span>:39:12 GMT. --
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora systemd-journal<span class="o">[</span><span class="m">200</span><span class="o">]</span>: Runtime journal is using <span class="m">8</span>.0M <span class="o">(</span>max allowed <span class="m">292</span>.3M, trying to leave <span class="m">438</span>.5M free of <span class="m">2</span>.8G availa...t <span class="m">292</span>.3M<span class="o">)</span>.
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora systemd-journal<span class="o">[</span><span class="m">200</span><span class="o">]</span>: Runtime journal is using <span class="m">8</span>.0M <span class="o">(</span>max allowed <span class="m">292</span>.3M, trying to leave <span class="m">438</span>.5M free of <span class="m">2</span>.8G availa...t <span class="m">292</span>.3M<span class="o">)</span>.
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora kernel: microcode: CPU0 microcode updated early to revision 0x1b, <span class="nv">date</span> <span class="o">=</span> <span class="m">2014</span>-05-29
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora kernel: Initializing cgroup subsys cpuset
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora kernel: Initializing cgroup subsys cpu
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora kernel: Initializing cgroup subsys cpuacct
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora kernel: Linux version <span class="m">4</span>.2.3-300.fc23.x86_64 <span class="o">(</span>mockbuild@bkernel02.phx2.fedoraproject.org<span class="o">)</span> <span class="o">(</span>gcc version <span class="m">5</span>.1.1 <span class="m">201506</span>... UTC <span class="m">2015</span>
+May <span class="m">07</span> <span class="m">04</span>:00:44 fedora kernel: Command line: <span class="nv">BOOT_IMAGE</span><span class="o">=</span>/vmlinuz-4.2.3-300.fc23.x86_64 <span class="nv">root</span><span class="o">=</span>/dev/sda4 ro rhgb quiet <span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+...
+</pre></div>
+
+
+<ul>
+<li>Follow live view of logs (-f/--follow):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -f
+</pre></div>
+
+
+<ul>
+<li>Display logs of current boot (-b/--boot=):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -b
+</pre></div>
+
+
+<ul>
+<li>Display kernel logs from previous boot (-k/--dmesg, -b/--boot= [ID][±offset]):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -k -b -1
+</pre></div>
+
+
+<ul>
+<li>List system boots:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl --list-boots
+</span>-10 38ba890bfa33438dafaf6ef973632f24 Sat <span class="m">2017</span>-02-18 <span class="m">14</span>:06:23 -05—Mon <span class="m">2017</span>-02-20 <span class="m">08</span>:59:48 -05
+ -9 bee7acaabf8c4bae84f4e722f7a1cdee Mon <span class="m">2017</span>-02-20 <span class="m">09</span>:55:05 -05—Tue <span class="m">2017</span>-02-21 <span class="m">17</span>:02:47 -05
+ -8 79e75e53d5064de39cc8daa5d9b498b0 Tue <span class="m">2017</span>-02-21 <span class="m">17</span>:03:04 -05—Mon <span class="m">2017</span>-03-13 <span class="m">20</span>:15:35 -05
+ -7 7f4b18dd2d1c41818403ebd4127ebdab Mon <span class="m">2017</span>-03-13 <span class="m">20</span>:15:35 -05—Sun <span class="m">2017</span>-03-19 <span class="m">14</span>:04:07 -05
+ -6 4fa6854475654115b6a42a6152a28ed0 Sun <span class="m">2017</span>-03-19 <span class="m">14</span>:04:16 -05—Sun <span class="m">2017</span>-03-19 <span class="m">14</span>:09:04 -05
+ -5 347eab3e0a8b466daf1fd0c2dd8f530c Sun <span class="m">2017</span>-03-19 <span class="m">14</span>:08:58 -05—Mon <span class="m">2017</span>-04-03 <span class="m">08</span>:25:33 -05
+ -4 c5fdea929ed64ae0b780a7c69e3dce23 Mon <span class="m">2017</span>-04-03 <span class="m">08</span>:25:47 -05—Sun <span class="m">2017</span>-04-09 <span class="m">19</span>:56:33 -05
+ -3 3583690c404b41318a6a2b9a06c17b74 Sun <span class="m">2017</span>-04-09 <span class="m">20</span>:10:48 -05—Mon <span class="m">2017</span>-05-08 <span class="m">01</span>:24:10 -05
+ -2 72266bc3243d41999e63926fb679b7cb Mon <span class="m">2017</span>-05-08 <span class="m">07</span>:50:10 -05—Fri <span class="m">2017</span>-05-26 <span class="m">07</span>:45:22 -05
+ -1 830be6c653a54e50ac93f45b338cf213 Fri <span class="m">2017</span>-05-26 <span class="m">07</span>:44:54 -05—Thu <span class="m">2017</span>-06-01 <span class="m">23</span>:43:42 -05
+  <span class="m">0</span> 29fe47d8fdf6485ab76d2eb73416787a Thu <span class="m">2017</span>-06-01 <span class="m">23</span>:43:55 -05—Tue <span class="m">2017</span>-06-27 <span class="m">15</span>:33:56 -05
+</pre></div>
+
+
+<ul>
+<li>Display logs filtered by priority <em>error</em> or higher (-p/--priority=):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -p err
+</pre></div>
+
+
+<ul>
+<li>Display all logs from the day before (-S/--since=):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl --since<span class="o">=</span>yesterday
+</pre></div>
+
+
+<ul>
+<li>Reverse order, latest entries are shown first (-S/--since=, -r/--reverse):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -S today -r
+</pre></div>
+
+
+<ul>
+<li>Display entries from the last twenty minutes (-S/--since=):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl --since <span class="s2">&quot;20 min ago&quot;</span>
+</pre></div>
+
+
+<ul>
+<li>Display entries between dates (-S/--since=, -U/--until=):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -S <span class="s2">&quot;2014-11-16 23:59:59&quot;</span> -U <span class="s2">&quot;2014-11-23 23:59:59&quot;</span>
+</pre></div>
+
+
+<ul>
+<li>Display entries between hours (-u/--init=, -S/--since=, -U/--until=):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -u sshd --since<span class="o">=</span><span class="m">00</span>:00 -U <span class="m">9</span>:30
+</pre></div>
+
+
+<ul>
+<li>Display logs generated by D-Bus executable</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl /usr/bin/dbus-daemon
+</pre></div>
+
+
+<ul>
+<li>Display logs generated by a disk</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl /dev/sda
+</pre></div>
+
+
+<ul>
+<li>Display a live log from httpd service (-f/--follow, -u/--unit=):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl -f -u httpd
+</pre></div>
+
+
+<ul>
+<li>Output to STDOUT (--no-pager):</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl --no-pager
+</pre></div>
+
+
+<ul>
+<li>Output logs with metadata (-u/--unit=, -o/--output=):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl --unit<span class="o">=</span>sshd --output<span class="o">=</span>verbose
+</span>-- Logs begin at Fri <span class="m">2016</span>-05-06 <span class="m">23</span>:00:44 -05, end at Tue <span class="m">2017</span>-06-27 <span class="m">21</span>:55:41 -05. --
+Tue <span class="m">2016</span>-09-13 <span class="m">22</span>:35:49.589544 -05 <span class="o">[</span><span class="nv">s</span><span class="o">=</span>d661e680791b4ca58c41e2586853a08e<span class="p">;</span><span class="nv">i</span><span class="o">=</span>4c05<span class="p">;</span><span class="nv">b</span><span class="o">=</span>fb1bfa6113b6450a854607c6b628f1a6<span class="p">;</span><span class="nv">m</span><span class="o">=</span>51c6e3384e<span class="p">;</span><span class="nv">t</span><span class="o">=</span>53c6f6ce5cfda<span class="p">;</span><span class="nv">x</span><span class="o">=</span><span class="m">93840</span>
+    <span class="nv">_BOOT_ID</span><span class="o">=</span>fb1bfa6113b6450a854607c6b628f1a6
+    <span class="nv">_MACHINE_ID</span><span class="o">=</span>2682a64ca8a14ecd955b5c07536950ae
+    <span class="nv">_HOSTNAME</span><span class="o">=</span>fedora
+    <span class="nv">_PID</span><span class="o">=</span><span class="m">1</span>
+    <span class="nv">_UID</span><span class="o">=</span><span class="m">0</span>
+    <span class="nv">SYSLOG_FACILITY</span><span class="o">=</span><span class="m">3</span>
+    <span class="nv">_GID</span><span class="o">=</span><span class="m">0</span>
+    <span class="nv">_CAP_EFFECTIVE</span><span class="o">=</span>3fffffffff
+    <span class="nv">PRIORITY</span><span class="o">=</span><span class="m">6</span>
+    <span class="nv">CODE_FILE</span><span class="o">=</span>src/core/unit.c
+    <span class="nv">CODE_LINE</span><span class="o">=</span><span class="m">1413</span>
+    <span class="nv">CODE_FUNCTION</span><span class="o">=</span>unit_status_log_starting_stopping_reloading
+    <span class="nv">SYSLOG_IDENTIFIER</span><span class="o">=</span>systemd
+    <span class="nv">MESSAGE_ID</span><span class="o">=</span>7d4958e842da4a758f6c1cdc7b36dcc5
+    <span class="nv">_TRANSPORT</span><span class="o">=</span>journal
+    <span class="nv">_COMM</span><span class="o">=</span>systemd
+    <span class="nv">_EXE</span><span class="o">=</span>/usr/lib/systemd/systemd
+    <span class="nv">_CMDLINE</span><span class="o">=</span>/usr/lib/systemd/systemd --switched-root --system --deserialize <span class="m">21</span>
+    <span class="nv">_SYSTEMD_CGROUP</span><span class="o">=</span>/
+    <span class="nv">_SYSTEMD_SLICE</span><span class="o">=</span>-.slice
+    <span class="nv">UNIT</span><span class="o">=</span>sshd.service
+    <span class="nv">MESSAGE</span><span class="o">=</span>Starting OpenSSH server daemon...
+    <span class="nv">_SOURCE_REALTIME_TIMESTAMP</span><span class="o">=</span><span class="m">1473824149589544</span>
+    ...
+</pre></div>
+
+
+<ul>
+<li>Output as a binary stream suitable for backups and network transfers (-u/--unit=, -o/--output=):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl -u sshd -o <span class="nb">export</span>
+</span>...
+<span class="nv">__CURSOR</span><span class="o">=</span><span class="nv">s</span><span class="o">=</span>d661e680791b4ca58c41e2586853a08e<span class="p">;</span><span class="nv">i</span><span class="o">=</span>4c06<span class="p">;</span><span class="nv">b</span><span class="o">=</span>fb1bfa6113b6450a854607c6b628f1a6<span class="p">;</span><span class="nv">m</span><span class="o">=</span>51c6e4069f<span class="p">;</span><span class="nv">t</span><span class="o">=</span>53c6f6ce69e2b<span class="p">;</span><span class="nv">x</span><span class="o">=</span>6270e5cdc028239f
+<span class="nv">__REALTIME_TIMESTAMP</span><span class="o">=</span><span class="m">1473824149642795</span>
+<span class="nv">__MONOTONIC_TIMESTAMP</span><span class="o">=</span><span class="m">351229183647</span>
+<span class="nv">_BOOT_ID</span><span class="o">=</span>fb1bfa6113b6450a854607c6b628f1a6
+<span class="nv">_MACHINE_ID</span><span class="o">=</span>2682a64ca8a14ecd955b5c07536950ae
+<span class="nv">_HOSTNAME</span><span class="o">=</span>fedora
+<span class="nv">_UID</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">_TRANSPORT</span><span class="o">=</span>syslog
+<span class="nv">_GID</span><span class="o">=</span><span class="m">0</span>
+<span class="nv">_CAP_EFFECTIVE</span><span class="o">=</span>3fffffffff
+<span class="nv">_SYSTEMD_SLICE</span><span class="o">=</span>system.slice
+<span class="nv">PRIORITY</span><span class="o">=</span><span class="m">6</span>
+<span class="nv">SYSLOG_FACILITY</span><span class="o">=</span><span class="m">10</span>
+<span class="nv">SYSLOG_IDENTIFIER</span><span class="o">=</span>sshd
+<span class="nv">SYSLOG_PID</span><span class="o">=</span><span class="m">6565</span>
+<span class="nv">MESSAGE</span><span class="o">=</span>Server listening on <span class="m">0</span>.0.0.0 port <span class="m">22</span>.
+<span class="nv">_PID</span><span class="o">=</span><span class="m">6565</span>
+<span class="nv">_COMM</span><span class="o">=</span>sshd
+<span class="nv">_EXE</span><span class="o">=</span>/usr/sbin/sshd
+<span class="nv">_CMDLINE</span><span class="o">=</span>/usr/sbin/sshd
+<span class="nv">_SYSTEMD_CGROUP</span><span class="o">=</span>/system.slice/sshd.service
+<span class="nv">_SYSTEMD_UNIT</span><span class="o">=</span>sshd.service
+<span class="nv">_SOURCE_REALTIME_TIMESTAMP</span><span class="o">=</span><span class="m">1473824149642517</span>
+...
+</pre></div>
+
+
+<ul>
+<li>Output entries as one per line JSON data suitable for web (-u/--unit=, -o/--output=):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl --unit sshd -o json
+</span><span class="o">{</span> <span class="s2">&quot;__CURSOR&quot;</span> : <span class="s2">&quot;s=d661e680791b4ca58c41e2586853a08e;i=4c05;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e3384e;t=53c6f6ce5cfda;x=938403ae0d5dcef3&quot;</span>, <span class="s2">&quot;__REALTIME_TIMESTAMP&quot;</span> : <span class="s2">&quot;1473824149589978&quot;</span>, <span class="s2">&quot;__MONOTONIC_TIMESTAMP&quot;</span> : <span class="s2">&quot;351229130830&quot;</span>, <span class="s2">&quot;_BOOT_ID&quot;</span> : <span class="s2">&quot;fb1bfa6113b6450a854607c6b628f1a6&quot;</span>, <span class="s2">&quot;_MACHINE_ID&quot;</span> : <span class="s2">&quot;2682a64ca8a14ecd955b5c07536950ae&quot;</span>, <span class="s2">&quot;_HOSTNAME&quot;</span> : <span class="s2">&quot;fedora&quot;</span>, <span class="s2">&quot;_PID&quot;</span> : <span class="s2">&quot;1&quot;</span>, <span class="s2">&quot;_UID&quot;</span> : <span class="s2">&quot;0&quot;</span>, <span class="s2">&quot;SYSLOG_FACILITY&quot;</span> : <span class="s2">&quot;3&quot;</span>, <span class="s2">&quot;_GID&quot;</span> : <span class="s2">&quot;0&quot;</span>, <span class="s2">&quot;_CAP_EFFECTIVE&quot;</span> : <span class="s2">&quot;3fffffffff&quot;</span>, <span class="s2">&quot;PRIORITY&quot;</span> : <span class="s2">&quot;6&quot;</span>, <span class="s2">&quot;CODE_FILE&quot;</span> : <span class="s2">&quot;src/core/unit.c&quot;</span>, <span class="s2">&quot;CODE_LINE&quot;</span> : <span class="s2">&quot;1413&quot;</span>, <span class="s2">&quot;CODE_FUNCTION&quot;</span> : <span class="s2">&quot;unit_status_log_starting_stopping_reloading&quot;</span>, <span class="s2">&quot;SYSLOG_IDENTIFIER&quot;</span> : <span class="s2">&quot;systemd&quot;</span>, <span class="s2">&quot;MESSAGE_ID&quot;</span> : <span class="s2">&quot;7d4958e842da4a758f6c1cdc7b36dcc5&quot;</span>, <span class="s2">&quot;_TRANSPORT&quot;</span> : <span class="s2">&quot;journal&quot;</span>, <span class="s2">&quot;_COMM&quot;</span> : <span class="s2">&quot;systemd&quot;</span>, <span class="s2">&quot;_EXE&quot;</span> : <span class="s2">&quot;/usr/lib/systemd/systemd&quot;</span>, <span class="s2">&quot;_CMDLINE&quot;</span> : <span class="s2">&quot;/usr/lib/systemd/systemd --switched-root --system --deserialize 21&quot;</span>, <span class="s2">&quot;_SYSTEMD_CGROUP&quot;</span> : <span class="s2">&quot;/&quot;</span>, <span class="s2">&quot;_SYSTEMD_SLICE&quot;</span> : <span class="s2">&quot;-.slice&quot;</span>, <span class="s2">&quot;UNIT&quot;</span> : <span class="s2">&quot;sshd.service&quot;</span>, <span class="s2">&quot;MESSAGE&quot;</span> : <span class="s2">&quot;Starting OpenSSH server daemon...&quot;</span>, <span class="s2">&quot;_SOURCE_REALTIME_TIMESTAMP&quot;</span> : <span class="s2">&quot;1473824149589544&quot;</span> <span class="o">}</span>
+...
+</pre></div>
+
+
+<ul>
+<li>Output entries as human-readable JSON data suitable for web (-u/--unit=, -o/--output=):</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl --unit sshd -o json-pretty
+</span><span class="o">{</span>
+        <span class="s2">&quot;__CURSOR&quot;</span> : <span class="s2">&quot;s=d661e680791b4ca58c41e2586853a08e;i=4c05;b=fb1bfa6113b6450a854607c6b628f1a6;m=51c6e3384e;t=53c6f6ce5cfda;x=938403ae0d5dcef3&quot;</span>,
+        <span class="s2">&quot;__REALTIME_TIMESTAMP&quot;</span> : <span class="s2">&quot;1473824149589978&quot;</span>,
+        <span class="s2">&quot;__MONOTONIC_TIMESTAMP&quot;</span> : <span class="s2">&quot;351229130830&quot;</span>,
+        <span class="s2">&quot;_BOOT_ID&quot;</span> : <span class="s2">&quot;fb1bfa6113b6450a854607c6b628f1a6&quot;</span>,
+        <span class="s2">&quot;_MACHINE_ID&quot;</span> : <span class="s2">&quot;2682a64ca8a14ecd955b5c07536950ae&quot;</span>,
+        <span class="s2">&quot;_HOSTNAME&quot;</span> : <span class="s2">&quot;fedora&quot;</span>,
+        <span class="s2">&quot;_PID&quot;</span> : <span class="s2">&quot;1&quot;</span>,
+        <span class="s2">&quot;_UID&quot;</span> : <span class="s2">&quot;0&quot;</span>,
+        <span class="s2">&quot;SYSLOG_FACILITY&quot;</span> : <span class="s2">&quot;3&quot;</span>,
+        <span class="s2">&quot;_GID&quot;</span> : <span class="s2">&quot;0&quot;</span>,
+        <span class="s2">&quot;_CAP_EFFECTIVE&quot;</span> : <span class="s2">&quot;3fffffffff&quot;</span>,
+        <span class="s2">&quot;PRIORITY&quot;</span> : <span class="s2">&quot;6&quot;</span>,
+        <span class="s2">&quot;CODE_FILE&quot;</span> : <span class="s2">&quot;src/core/unit.c&quot;</span>,
+        <span class="s2">&quot;CODE_LINE&quot;</span> : <span class="s2">&quot;1413&quot;</span>,
+        <span class="s2">&quot;CODE_FUNCTION&quot;</span> : <span class="s2">&quot;unit_status_log_starting_stopping_reloading&quot;</span>,
+        <span class="s2">&quot;SYSLOG_IDENTIFIER&quot;</span> : <span class="s2">&quot;systemd&quot;</span>,
+        <span class="s2">&quot;MESSAGE_ID&quot;</span> : <span class="s2">&quot;7d4958e842da4a758f6c1cdc7b36dcc5&quot;</span>,
+        <span class="s2">&quot;_TRANSPORT&quot;</span> : <span class="s2">&quot;journal&quot;</span>,
+        <span class="s2">&quot;_COMM&quot;</span> : <span class="s2">&quot;systemd&quot;</span>,
+        <span class="s2">&quot;_EXE&quot;</span> : <span class="s2">&quot;/usr/lib/systemd/systemd&quot;</span>,
+        <span class="s2">&quot;_CMDLINE&quot;</span> : <span class="s2">&quot;/usr/lib/systemd/systemd --switched-root --system --deserialize 21&quot;</span>,
+        <span class="s2">&quot;_SYSTEMD_CGROUP&quot;</span> : <span class="s2">&quot;/&quot;</span>,
+        <span class="s2">&quot;_SYSTEMD_SLICE&quot;</span> : <span class="s2">&quot;-.slice&quot;</span>,
+        <span class="s2">&quot;UNIT&quot;</span> : <span class="s2">&quot;sshd.service&quot;</span>,
+        <span class="s2">&quot;MESSAGE&quot;</span> : <span class="s2">&quot;Starting OpenSSH server daemon...&quot;</span>,
+        <span class="s2">&quot;_SOURCE_REALTIME_TIMESTAMP&quot;</span> : <span class="s2">&quot;1473824149589544&quot;</span>
+<span class="o">}</span>
+...
+</pre></div>
+
+
+<ul>
+<li>Display entries that matches the expression:</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl <span class="nv">_SYSTEMD_UNIT</span><span class="o">=</span>firewalld.service
+</pre></div>
+
+
+<ul>
+<li>Find out possible values for field:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl <span class="nv">_SELINUX_CONTEXT</span><span class="o">=</span>&lt;TAB&gt;&lt;TAB&gt;
+</span>kernel
+system_u:system_r:alsa_t:s0
+system_u:system_r:auditctl_t:s0
+system_u:system_r:auditd_t:s0
+system_u:system_r:crond_t:s0-s0:c0.c1023
+system_u:system_r:dhcpc_t:s0
+system_u:system_r:firewalld_t:s0
+system_u:system_r:policykit_t:s0
+system_u:system_r:rpm_t:s0
+...
+</pre></div>
+
+
+<ul>
+<li>Display logs from selinux label PolicyKit:</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl <span class="nv">_SELINUX_CONTEXT</span><span class="o">=</span>system_u:system_r:policykit_t:s0
+</pre></div>
+
+
+<ul>
+<li>Current disk usage of the journal:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="hll">$ journalctl --disk-usage
+</span>Archived and active journals take up <span class="m">2</span>.8G on disk.
+</pre></div>
+
+
+<ul>
+<li>Verify internal consistency of journal files:</li>
+</ul>
+<div class="highlight"><pre><span></span>journalctl --verify
+</pre></div>
+
+
+<p>For further information about journalctl, read <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/s1-Using_the_Journal.html">Red Hat Documentation: Using the Journal</a>, <a href="http://0pointer.de/blog/projects/journalctl.html">0pointer.de post: journalctl</a>, <a href="https://www.freedesktop.org/software/systemd/man/journalctl.html">man page: journalctl</a></p>
+        </section>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    // var disqus_shortname = 'danclaudiupop';
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript><footer>
+  <div class="footer">
+    &copy; cesmus &ndash;
+    2017
+  </div>
+</footer>    </div>
+
+
+</body>
+</html>
